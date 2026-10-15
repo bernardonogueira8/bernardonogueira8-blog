@@ -1,0 +1,49 @@
+---
+import MarkdownPostLayout from "../../../layouts/MarkdownPostLayout.astro";
+import { getPostBySlug, getAllPosts } from "../../../lib/posts";
+import { marked } from "marked";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/404");
+}
+
+let post = await getPostBySlug(slug);
+
+// Backward-compatibility lookup for older filenames or variations
+if (!post) {
+  const allPosts = await getAllPosts();
+  const normalizedSlug = decodeURIComponent(slug).toLowerCase();
+  
+  post = allPosts.find((p) => {
+    return (
+      p.slug.toLowerCase() === normalizedSlug ||
+      p.title.toLowerCase().replace(/[^\w\s-]/g, '').trim() === normalizedSlug ||
+      normalizedSlug.includes(p.slug.toLowerCase()) ||
+      p.slug.toLowerCase().includes(normalizedSlug)
+    );
+  }) || null;
+}
+
+if (!post) {
+  return Astro.redirect("/404");
+}
+
+const htmlContent = await marked.parse(post.content || "");
+
+const frontmatter = {
+  title: post.title,
+  author: post.author || "Bernardo Nogueira",
+  pubDate: post.pub_date,
+  description: post.description || "",
+  tags: post.tags || [],
+  languages: post.languages || [],
+  image: post.image_url ? { url: post.image_url, alt: post.image_alt || post.title } : undefined,
+  project: post.project,
+};
+---
+
+<MarkdownPostLayout frontmatter={frontmatter}>
+  <Fragment set:html={htmlContent} />
+</MarkdownPostLayout>

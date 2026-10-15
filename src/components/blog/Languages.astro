@@ -1,9 +1,8 @@
 ---
-const allPosts = await Astro.glob("../../pages/blog/posts/*.md");
-const languages = [
-    ...new Set(allPosts.map((post) => post.frontmatter.languages).flat()),
-];
+import { getAllLanguages } from "../../lib/posts";
 import Capsule from "../ui/Capsule.astro";
+
+const languages = await getAllLanguages();
 
 const { variant = "default" } = Astro.props;
 
@@ -22,6 +21,3 @@ const classes = `${baseClasses} ${variantClasses[variant as keyof typeof variant
         <Capsule lang={language} linkEnabled={true} size="md" />
     ))}
 </div>
-
-
-

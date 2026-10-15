@@ -2,53 +2,32 @@
 import Layout from "../../../layouts/Layout.astro";
 import BlogPost from "../../../components/blog/BlogPost.astro";
 import Heading from "../../../components/ui/Heading.astro";
-import type { MarkdownInstance } from 'astro';
-
-interface Frontmatter {
-  languages: string[];
-  title: string;
-  pubDate: string;
-  tags: string[];
-  image: string;
-}
-export async function getStaticPaths(): Promise<Array<{params: {category: string}, props: {posts: MarkdownInstance<Frontmatter>[]}}>>{
-  const allPosts: MarkdownInstance<Frontmatter>[] = await Astro.glob<Frontmatter>("../posts/*.md");
-
-  const uniqueTags: string[] = [
-    ...new Set(allPosts.map((post: MarkdownInstance<Frontmatter>) => post.frontmatter.languages).flat()),
-  ];
-
-  return uniqueTags.map((category) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.frontmatter.languages.includes(category)
-    );
-    return {
-      params: { category },
-      props: { posts: filteredPosts },
-    };
-  });
-}
+import { getPostsByLanguage } from "../../../lib/posts";
 
 const { category } = Astro.params;
-const { posts } = Astro.props;
+const posts = category ? await getPostsByLanguage(decodeURIComponent(category)) : [];
 ---
 
-<Layout pageTitle={category} >
+<Layout pageTitle={category ? `Postagens sobre ${category}` : 'Tecnologias'}>
   <section class="py-8">
     <div class="flex flex-col gap-8 max-w-4xl mx-auto">
-      <Heading text="Postagens sobre" textGradient={category}  />
+      <Heading text="Postagens sobre" textGradient={category} />
 
       {
-        posts.map((post) => (
-          <BlogPost
-            url={post.url}
-            title={post.frontmatter.title}
-            date={post.frontmatter.pubDate}
-            tags={post.frontmatter.tags}
-            languages={post.frontmatter.languages}
-            image={post.frontmatter.image}
-          />
-        ))
+        posts.length > 0 ? (
+          posts.map((post) => (
+            <BlogPost
+              url={`/blog/posts/${post.slug}`}
+              title={post.title}
+              date={post.pub_date}
+              tags={post.tags}
+              languages={post.languages}
+              image={post.image_url ? { url: post.image_url, alt: post.image_alt || post.title } : undefined}
+            />
+          ))
+        ) : (
+          <p class="text-center text-neutral-400 py-12">Nenhum post encontrado com esta tecnologia.</p>
+        )
       }
     </div>
   </section>

@@ -36,14 +36,18 @@ const {
         <Icon name="logo" aria-hidden="true" />
       </a>
     </div>
-    <div class="text-center">
+    <div class="text-center flex flex-col sm:flex-row items-center justify-center gap-2 text-base font-normal italic max-sm:text-sm">
       <a
         href={github}
-        class="flex items-center justify-center gap-3 text-base font-normal italic max-sm:text-sm"
+        class="flex items-center justify-center gap-3"
         aria-label="Sobre o desenvolvimento do site"
         ><Icon name="code" aria-hidden="true" /> Adaptado de EFEELE/NeonMint
         <strong>{alias}</strong></a
       >
+      <span class="hidden sm:inline text-neutral-400">•</span>
+      <a href="/admin" class="text-xs text-neutral-400 hover:text-mint-400 transition-colors not-italic font-medium">
+        Studio Admin
+      </a>
     </div>
     <div
       class="flex items-center justify-center gap-5"

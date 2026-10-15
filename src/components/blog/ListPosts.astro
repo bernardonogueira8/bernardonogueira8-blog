@@ -1,6 +1,7 @@
 ---
 import BlogPost from "./BlogPost.astro";
 import Heading from "../ui/Heading.astro";
+import { getAllPosts } from "../../lib/posts";
 
 // Prop to determine whether to exclude the latest post or a specific post
 export interface Props {
@@ -11,13 +12,7 @@ export interface Props {
 
 const { excludeLatest = false, currentPostUrl = "", all = false } = Astro.props;
 
-const allPosts = await Astro.glob("../../pages/blog/posts/*.md");
-// Sort by date in descending order (newest first)
-allPosts.sort((a, b) => {
-  const dateA = new Date(a.frontmatter.pubDate).getTime();
-  const dateB = new Date(b.frontmatter.pubDate).getTime();
-  return dateB - dateA;
-});
+const allPosts = await getAllPosts();
 
 // Filter posts according to props
 let postsToShow = allPosts;
@@ -25,11 +20,10 @@ let postsToShow = allPosts;
 if (currentPostUrl) {
   // Exclude current post if its URL is provided
   postsToShow = postsToShow.filter((post) => {
-    if (!post.url) return false; // If no URL, keep the post
-    // Normalize URLs for comparison
-    const normalizedPostUrl = post.url.replace(/\/$/, ""); // Remove trailing slash if exists
-    const normalizedCurrentUrl = currentPostUrl.replace(/\/$/, ""); // Remove trailing slash if exists
-    return normalizedPostUrl !== normalizedCurrentUrl;
+    const postUrl = `/blog/posts/${post.slug}`;
+    const normalizedPostUrl = postUrl.replace(/\/$/, "");
+    const normalizedCurrentUrl = currentPostUrl.replace(/\/$/, "");
+    return normalizedPostUrl !== normalizedCurrentUrl && !normalizedCurrentUrl.endsWith(post.slug);
   });
 } else if (excludeLatest) {
   // If no specific URL but want to exclude the latest
@@ -48,7 +42,7 @@ if (!all) {
   {
     all && (
       <div class="flex gap-4 pb-6 items-center text-center justify-center">
-        <Heading text="Tudos os" textGradient="Posts" level={2} />
+        <Heading text="Todos os" textGradient="Posts" level={2} />
       </div>
     )
   }
@@ -57,12 +51,12 @@ if (!all) {
     {
       postsToShow.map((post) => (
         <BlogPost
-          url={post.url}
-          title={post.frontmatter.title}
-          date={post.frontmatter.pubDate}
-          tags={post.frontmatter.tags}
-          languages={post.frontmatter.languages}
-          image={post.frontmatter.image}
+          url={`/blog/posts/${post.slug}`}
+          title={post.title}
+          date={post.pub_date}
+          tags={post.tags}
+          languages={post.languages}
+          image={post.image_url ? { url: post.image_url, alt: post.image_alt || post.title } : undefined}
         />
       ))
     }

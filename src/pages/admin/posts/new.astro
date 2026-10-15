@@ -1,0 +1,484 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+const pageTitle = "Novo Post | Bernardo SaaS Studio";
+---
+
+<Layout pageTitle={pageTitle}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[85vh]">
+    <!-- Breadcrumb & Top Bar -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-neutral-200 dark:border-zinc-800">
+      <div>
+        <div class="flex items-center gap-2 text-xs text-neutral-500 mb-1">
+          <a href="/admin" class="hover:text-mint-500 transition-colors">Painel Admin</a>
+          <span>/</span>
+          <span class="text-neutral-900 dark:text-white font-medium">Novo Post</span>
+        </div>
+        <h1 class="text-2xl font-bold text-neutral-900 dark:text-white">Criar Nova Publicação</h1>
+      </div>
+
+      <div class="flex items-center gap-3 w-full sm:w-auto">
+        <a
+          href="/admin"
+          class="flex-1 sm:flex-none text-center px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-zinc-700 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-zinc-800 transition-all"
+        >
+          Cancelar
+        </a>
+        <button
+          type="button"
+          id="saveDraftBtn"
+          class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 transition-all cursor-pointer"
+        >
+          Salvar Rascunho
+        </button>
+        <button
+          type="button"
+          id="publishBtn"
+          class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-linear-to-r from-mint-500 to-emerald-600 hover:from-mint-600 hover:to-emerald-700 text-white text-xs font-semibold shadow-md shadow-mint-500/20 transition-all cursor-pointer flex items-center justify-center gap-2"
+        >
+          <span id="publishBtnText">Publicar Post</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="statusAlert" class="hidden my-4 p-4 rounded-xl text-sm font-medium"></div>
+
+    <!-- Main Post Form -->
+    <form id="postForm" class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
+      <!-- Left Column: Content & Markdown (2 cols) -->
+      <div class="lg:col-span-2 space-y-6">
+        <div>
+          <label for="postTitle" class="block text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">
+            Título da Publicação *
+          </label>
+          <input
+            type="text"
+            id="postTitle"
+            required
+            placeholder="Ex: Análise Preditiva em Saúde com Machine Learning"
+            class="w-full px-4 py-3 rounded-2xl bg-white dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 text-base font-medium text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-mint-500"
+          />
+        </div>
+
+        <div>
+          <label for="postSlug" class="block text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">
+            Slug URL (identificador único) *
+          </label>
+          <div class="flex items-center rounded-2xl bg-white dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 px-4 py-3">
+            <span class="text-xs text-neutral-400 font-mono select-none">/blog/posts/</span>
+            <input
+              type="text"
+              id="postSlug"
+              required
+              placeholder="analise-preditiva-em-saude"
+              class="w-full bg-transparent text-sm font-mono text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="postDescription" class="block text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">
+            Descrição Curta / Resumo
+          </label>
+          <textarea
+            id="postDescription"
+            rows="2"
+            placeholder="Breve resumo para os cartões de prévia e meta tags de SEO..."
+            class="w-full px-4 py-3 rounded-2xl bg-white dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-mint-500"
+          ></textarea>
+        </div>
+
+        <!-- Markdown Editor & Preview Tabs -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+              Conteúdo (Markdown) *
+            </label>
+            <div class="flex items-center gap-1 bg-neutral-100 dark:bg-zinc-800 p-1 rounded-xl text-xs font-medium">
+              <button
+                type="button"
+                id="tabEditorBtn"
+                class="px-3 py-1 rounded-lg bg-white dark:bg-zinc-900 text-neutral-900 dark:text-white shadow-xs"
+              >
+                Editor
+              </button>
+              <button
+                type="button"
+                id="tabPreviewBtn"
+                class="px-3 py-1 rounded-lg text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+              >
+                Pré-visualização
+              </button>
+            </div>
+          </div>
+
+          <!-- Markdown Toolbar -->
+          <div id="toolbar" class="flex flex-wrap items-center gap-1 p-2 bg-neutral-50 dark:bg-zinc-800/60 border border-b-0 border-neutral-200 dark:border-zinc-800 rounded-t-2xl">
+            <button type="button" data-cmd="bold" class="tool-btn px-2.5 py-1 text-xs font-bold rounded-lg hover:bg-neutral-200 dark:hover:bg-zinc-700">B</button>
+            <button type="button" data-cmd="italic" class="tool-btn px-2.5 py-1 text-xs italic font-serif rounded-lg hover:bg-neutral-200 dark:hover:bg-zinc-700">I</button>
+            <button type="button" data-cmd="heading" class="tool-btn px-2.5 py-1 text-xs font-bold rounded-lg hover:bg-neutral-200 dark:hover:bg-zinc-700">H2</button>
+            <button type="button" data-cmd="code" class="tool-btn px-2.5 py-1 text-xs font-mono rounded-lg hover:bg-neutral-200 dark:hover:bg-zinc-700">&lt;/&gt;</button>
+            <button type="button" data-cmd="table" class="tool-btn px-2.5 py-1 text-xs rounded-lg hover:bg-neutral-200 dark:hover:bg-zinc-700">Tabela</button>
+            <button type="button" data-cmd="link" class="tool-btn px-2.5 py-1 text-xs rounded-lg hover:bg-neutral-200 dark:hover:bg-zinc-700">Link</button>
+            <button type="button" data-cmd="image" class="tool-btn px-2.5 py-1 text-xs rounded-lg hover:bg-neutral-200 dark:hover:bg-zinc-700">Imagem</button>
+          </div>
+
+          <!-- Editor textarea -->
+          <div id="editorContainer">
+            <textarea
+              id="postContent"
+              rows="16"
+              required
+              placeholder="Escreva seu artigo aqui usando Markdown..."
+              class="w-full px-4 py-3 rounded-b-2xl bg-white dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 font-mono text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-mint-500"
+            ></textarea>
+          </div>
+
+          <!-- Live Preview -->
+          <div
+            id="previewContainer"
+            class="hidden w-full min-h-[350px] max-h-[600px] overflow-y-auto px-6 py-6 rounded-b-2xl bg-white dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 prose dark:prose-invert max-w-none text-neutral-900 dark:text-neutral-100"
+          >
+            <div id="previewOutput"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Metadata & Media (1 col) -->
+      <div class="space-y-6">
+        <!-- Settings Card -->
+        <div class="p-6 rounded-3xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-neutral-200 dark:border-zinc-800 space-y-4">
+          <h3 class="text-sm font-bold text-neutral-900 dark:text-white uppercase tracking-wider">Configurações</h3>
+
+          <div>
+            <label for="postDate" class="block text-xs font-semibold text-neutral-500 mb-1">Data de Publicação</label>
+            <input
+              type="date"
+              id="postDate"
+              class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-800 border border-neutral-200 dark:border-zinc-700 text-sm text-neutral-900 dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label for="postAuthor" class="block text-xs font-semibold text-neutral-500 mb-1">Autor</label>
+            <input
+              type="text"
+              id="postAuthor"
+              value="Bernardo Nogueira"
+              class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-800 border border-neutral-200 dark:border-zinc-700 text-sm text-neutral-900 dark:text-white"
+            />
+          </div>
+
+          <div class="pt-2 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-semibold text-neutral-900 dark:text-white block">Destacar como Projeto</span>
+              <span class="text-[11px] text-neutral-500">Exibe na seção de projetos do portfólio</span>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="postIsProject" class="sr-only peer" />
+              <div class="w-10 h-6 bg-neutral-300 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-mint-500"></div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Media & Image Upload Card -->
+        <div class="p-6 rounded-3xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-neutral-200 dark:border-zinc-800 space-y-4">
+          <h3 class="text-sm font-bold text-neutral-900 dark:text-white uppercase tracking-wider">Imagem de Capa</h3>
+
+          <div>
+            <label class="block text-xs font-semibold text-neutral-500 mb-1">Upload no Supabase Storage</label>
+            <input
+              type="file"
+              id="imageFileInput"
+              accept="image/*"
+              class="block w-full text-xs text-neutral-500 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-mint-500/10 file:text-mint-600 dark:file:text-mint-400 hover:file:bg-mint-500/20 cursor-pointer"
+            />
+            <span id="uploadProgress" class="text-xs text-mint-500 hidden mt-1">Enviando imagem...</span>
+          </div>
+
+          <div>
+            <label for="imageUrl" class="block text-xs font-semibold text-neutral-500 mb-1">Ou URL da Imagem</label>
+            <input
+              type="text"
+              id="imageUrl"
+              placeholder="/attachments/imagem.png ou https://..."
+              class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-800 border border-neutral-200 dark:border-zinc-700 text-xs text-neutral-900 dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label for="imageAlt" class="block text-xs font-semibold text-neutral-500 mb-1">Texto Alternativo (Alt)</label>
+            <input
+              type="text"
+              id="imageAlt"
+              placeholder="Descrição da imagem para acessibilidade"
+              class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-800 border border-neutral-200 dark:border-zinc-700 text-xs text-neutral-900 dark:text-white"
+            />
+          </div>
+
+          <div id="imagePreviewBox" class="hidden pt-2">
+            <span class="text-xs text-neutral-400 block mb-1">Prévia:</span>
+            <img id="imagePreview" src="" alt="" class="w-full h-32 rounded-xl object-cover bg-neutral-100 dark:bg-zinc-800" />
+          </div>
+        </div>
+
+        <!-- Tags & Technologies Card -->
+        <div class="p-6 rounded-3xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-neutral-200 dark:border-zinc-800 space-y-4">
+          <h3 class="text-sm font-bold text-neutral-900 dark:text-white uppercase tracking-wider">Tags e Tecnologias</h3>
+
+          <div>
+            <label for="postTags" class="block text-xs font-semibold text-neutral-500 mb-1">Categorias / Tags (separadas por vírgula)</label>
+            <input
+              type="text"
+              id="postTags"
+              placeholder="Python, Ciência de Dados, Saúde, Projetos"
+              class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-800 border border-neutral-200 dark:border-zinc-700 text-xs text-neutral-900 dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label for="postLanguages" class="block text-xs font-semibold text-neutral-500 mb-1">Linguagens / Frameworks (separadas por vírgula)</label>
+            <input
+              type="text"
+              id="postLanguages"
+              placeholder="python, scikit_learn, pandas, docker"
+              class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-800 border border-neutral-200 dark:border-zinc-700 text-xs text-neutral-900 dark:text-white"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</Layout>
+
+<script>
+  import { supabase } from "../../../lib/supabase";
+  import { marked } from "marked";
+
+  const titleInput = document.getElementById("postTitle") as HTMLInputElement;
+  const slugInput = document.getElementById("postSlug") as HTMLInputElement;
+  const descInput = document.getElementById("postDescription") as HTMLTextAreaElement;
+  const contentInput = document.getElementById("postContent") as HTMLTextAreaElement;
+  const dateInput = document.getElementById("postDate") as HTMLInputElement;
+  const authorInput = document.getElementById("postAuthor") as HTMLInputElement;
+  const isProjectInput = document.getElementById("postIsProject") as HTMLInputElement;
+  const tagsInput = document.getElementById("postTags") as HTMLInputElement;
+  const languagesInput = document.getElementById("postLanguages") as HTMLInputElement;
+  const imageUrlInput = document.getElementById("imageUrl") as HTMLInputElement;
+  const imageAltInput = document.getElementById("imageAlt") as HTMLInputElement;
+  const imageFileInput = document.getElementById("imageFileInput") as HTMLInputElement;
+  const uploadProgress = document.getElementById("uploadProgress") as HTMLElement;
+  const imagePreviewBox = document.getElementById("imagePreviewBox") as HTMLElement;
+  const imagePreview = document.getElementById("imagePreview") as HTMLImageElement;
+
+  const tabEditorBtn = document.getElementById("tabEditorBtn") as HTMLButtonElement;
+  const tabPreviewBtn = document.getElementById("tabPreviewBtn") as HTMLButtonElement;
+  const editorContainer = document.getElementById("editorContainer") as HTMLElement;
+  const previewContainer = document.getElementById("previewContainer") as HTMLElement;
+  const previewOutput = document.getElementById("previewOutput") as HTMLElement;
+
+  const publishBtn = document.getElementById("publishBtn") as HTMLButtonElement;
+  const saveDraftBtn = document.getElementById("saveDraftBtn") as HTMLButtonElement;
+  const statusAlert = document.getElementById("statusAlert") as HTMLElement;
+
+  // Set default date to today
+  dateInput.value = new Date().toISOString().split("T")[0];
+
+  // Auth Guard
+  async function checkAuth() {
+    const { data } = await supabase.auth.getSession();
+    if (!data.session) {
+      window.location.href = "/admin/login";
+    }
+  }
+  checkAuth();
+
+  function slugify(text: string) {
+    return text
+      .toString()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^\w\s-]/g, "")
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/--+/g, "-");
+  }
+
+  // Auto-slug generation from title
+  let isManualSlug = false;
+  slugInput.addEventListener("input", () => {
+    isManualSlug = slugInput.value.trim().length > 0;
+  });
+
+  titleInput.addEventListener("input", () => {
+    if (!isManualSlug) {
+      slugInput.value = slugify(titleInput.value);
+    }
+  });
+
+  // Image preview
+  imageUrlInput.addEventListener("input", () => {
+    const val = imageUrlInput.value.trim();
+    if (val) {
+      imagePreview.src = val;
+      imagePreviewBox.classList.remove("hidden");
+    } else {
+      imagePreviewBox.classList.add("hidden");
+    }
+  });
+
+  // Supabase Storage Upload
+  imageFileInput.addEventListener("change", async (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+
+    uploadProgress.classList.remove("hidden");
+    uploadProgress.textContent = "Fazendo upload para o Supabase Storage...";
+
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+    const filePath = `posts/${fileName}`;
+
+    try {
+      const { data, error } = await supabase.storage
+        .from("blog-images")
+        .upload(filePath, file, { upsert: true });
+
+      if (error) throw error;
+
+      const { data: publicUrlData } = supabase.storage
+        .from("blog-images")
+        .getPublicUrl(filePath);
+
+      imageUrlInput.value = publicUrlData.publicUrl;
+      imagePreview.src = publicUrlData.publicUrl;
+      imagePreviewBox.classList.remove("hidden");
+      uploadProgress.textContent = "Upload concluído!";
+      setTimeout(() => uploadProgress.classList.add("hidden"), 3000);
+    } catch (err: any) {
+      console.error(err);
+      uploadProgress.textContent = `Erro no upload: ${err.message}`;
+    }
+  });
+
+  // Tab switching: Editor vs Preview
+  tabEditorBtn.addEventListener("click", () => {
+    tabEditorBtn.className = "px-3 py-1 rounded-lg bg-white dark:bg-zinc-900 text-neutral-900 dark:text-white shadow-xs";
+    tabPreviewBtn.className = "px-3 py-1 rounded-lg text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white";
+    editorContainer.classList.remove("hidden");
+    previewContainer.classList.add("hidden");
+  });
+
+  tabPreviewBtn.addEventListener("click", async () => {
+    tabPreviewBtn.className = "px-3 py-1 rounded-lg bg-white dark:bg-zinc-900 text-neutral-900 dark:text-white shadow-xs";
+    tabEditorBtn.className = "px-3 py-1 rounded-lg text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white";
+    editorContainer.classList.add("hidden");
+    previewContainer.classList.remove("hidden");
+    previewOutput.innerHTML = (await marked.parse(contentInput.value || "*Sem conteúdo ainda...*")) as string;
+  });
+
+  // Formatting toolbar commands
+  document.querySelectorAll(".tool-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cmd = btn.getAttribute("data-cmd");
+      const start = contentInput.selectionStart;
+      const end = contentInput.selectionEnd;
+      const text = contentInput.value;
+      const selected = text.substring(start, end);
+
+      let insert = "";
+      switch (cmd) {
+        case "bold":
+          insert = `**${selected || "texto em negrito"}**`;
+          break;
+        case "italic":
+          insert = `*${selected || "texto em itálico"}*`;
+          break;
+        case "heading":
+          insert = `\n## ${selected || "Título da Seção"}\n`;
+          break;
+        case "code":
+          insert = `\n\`\`\`python\n${selected || "# Seu código aqui"}\n\`\`\`\n`;
+          break;
+        case "table":
+          insert = `\n| Coluna 1 | Coluna 2 |\n| :--- | :--- |\n| Dado 1 | Dado 2 |\n`;
+          break;
+        case "link":
+          insert = `[${selected || "Texto do link"}](https://exemplo.com)`;
+          break;
+        case "image":
+          insert = `![${selected || "Legenda da imagem"}](/attachments/imagem.png)`;
+          break;
+      }
+
+      contentInput.value = text.substring(0, start) + insert + text.substring(end);
+      contentInput.focus();
+    });
+  });
+
+  function parseCommaArray(val: string): string[] {
+    return val
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  async function savePost(status: "published" | "draft") {
+    const title = titleInput.value.trim();
+    const slug = slugInput.value.trim();
+    const content = contentInput.value.trim();
+
+    if (!title || !slug || !content) {
+      alert("Por favor preencha pelo menos Título, Slug e Conteúdo!");
+      return;
+    }
+
+    publishBtn.disabled = true;
+    saveDraftBtn.disabled = true;
+
+    const postData = {
+      title,
+      slug,
+      content,
+      description: descInput.value.trim(),
+      pub_date: dateInput.value || new Date().toISOString().split("T")[0],
+      author: authorInput.value.trim() || "Bernardo Nogueira",
+      project: isProjectInput.checked,
+      tags: parseCommaArray(tagsInput.value),
+      languages: parseCommaArray(languagesInput.value),
+      image_url: imageUrlInput.value.trim() || null,
+      image_alt: imageAltInput.value.trim() || null,
+      status,
+      updated_at: new Date().toISOString(),
+    };
+
+    try {
+      const { data, error } = await supabase
+        .from("posts")
+        .insert([postData])
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      statusAlert.textContent = `Post "${title}" salvo com sucesso!`;
+      statusAlert.className = "my-4 p-4 rounded-xl text-sm font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20";
+      statusAlert.classList.remove("hidden");
+
+      setTimeout(() => {
+        window.location.href = "/admin";
+      }, 1000);
+    } catch (err: any) {
+      console.error(err);
+      statusAlert.textContent = `Erro ao salvar post: ${err.message}`;
+      statusAlert.className = "my-4 p-4 rounded-xl text-sm font-medium bg-rose-500/10 text-rose-500 border border-rose-500/20";
+      statusAlert.classList.remove("hidden");
+      publishBtn.disabled = false;
+      saveDraftBtn.disabled = false;
+    }
+  }
+
+  publishBtn.addEventListener("click", () => savePost("published"));
+  saveDraftBtn.addEventListener("click", () => savePost("draft"));
+</script>

@@ -1,23 +1,19 @@
 ---
-const allPosts = await Astro.glob("../../pages/blog/posts/*.md");
-
+import { getAllPosts } from "../../lib/posts";
 import Tag from "../ui/Tag.astro";
 import ReadMore from "../ui/ReadMore.astro";
 import Capsule from "../ui/Capsule.astro";
 import DatePub from "./DatePub.astro";
 
-// Get the latest post using reduce
-const latestPost = allPosts.reduce((latest, current) => {
-  const latestDate = new Date(latest.frontmatter.pubDate).getTime();
-  const currentDate = new Date(current.frontmatter.pubDate).getTime();
-  return currentDate > latestDate ? current : latest;
-});
+const allPosts = await getAllPosts();
 
-const tags = [...new Set(latestPost.frontmatter.tags ?? [])];
-const languages = [...new Set(latestPost.frontmatter.languages ?? [])];
-const image = latestPost.frontmatter.image.url;
-const imageAlt =
-  latestPost.frontmatter.image.alt || latestPost.frontmatter.title;
+const latestPost = allPosts.length > 0 ? allPosts[0] : null;
+
+const tags = latestPost ? [...new Set(latestPost.tags ?? [])] : [];
+const languages = latestPost ? [...new Set(latestPost.languages ?? [])] : [];
+const image = latestPost?.image_url || "/attachments/fetal_health.png";
+const imageAlt = latestPost?.image_alt || latestPost?.title || "Imagem do Post";
+const postUrl = latestPost ? `/blog/posts/${latestPost.slug}` : "/blog";
 ---
 
 {
@@ -30,7 +26,7 @@ const imageAlt =
     >
       <article class="h-full flex flex-col justify-between max-sm:bg-zinc-900 max-sm:relative sm:bg-linear-to-t from-black/95 from-25% to-transparent max-sm:from-60% p-8 max-md:p-6 max-sm:mp-0 max-sm:p-0">
         <a
-          href=""
+          href={postUrl}
           class="sm:hidden relative top-0 left-0 w-full h-auto -z-0"
           aria-hidden="true"
         >
@@ -52,17 +48,17 @@ const imageAlt =
         </div>
 
         <a
-          href={latestPost.url}
-          class="text-mint-50 gap-3 h-full flex items-end max-sm:px-6  rounded-lg transition-all"
-          aria-label={`Read article: ${latestPost.frontmatter.title}`}
+          href={postUrl}
+          class="text-mint-50 gap-3 h-full flex items-end max-sm:px-6 rounded-lg transition-all"
+          aria-label={`Read article: ${latestPost.title}`}
         >
           <div class="gap-3 flex flex-col justify-end drop-shadow-[1px_6px_1px_rgba(0,0,0,0.3)]">
-            <DatePub date={latestPost.frontmatter.pubDate} class="text-mint-50" />
+            <DatePub date={latestPost.pub_date} class="text-mint-50" />
             <h2
               id="post-title"
               class="text-4xl max-xl:text-3xl max-sm:text-2xl font-bold"
             >
-              <span>{latestPost.frontmatter.title}</span>
+              <span>{latestPost.title}</span>
             </h2>
             <ReadMore class="text-mint-50" />
           </div>
