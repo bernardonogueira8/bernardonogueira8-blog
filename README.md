@@ -36,12 +36,12 @@ Ficou curioso pra ver como o site funciona por dentro? É só seguir os passos a
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/bernardonogueira8/bernardonogueira8.github.io.git](https://github.com/bernardonogueira8/bernardonogueira8.github.io.git)
+    git clone [https://github.com/bernardonogueira8/bernardonogueira8-blog](https://github.com/bernardonogueira8/bernardonogueira8-blog)
     ```
 
 2.  **Navegue até a pasta do projeto:**
     ```bash
-    cd bernardonogueira8.github.io
+    cd bernardonogueira8-blog
     ```
 
 3.  **Instale as dependências:**
