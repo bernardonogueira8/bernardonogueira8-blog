@@ -38,6 +38,8 @@ export interface Profile {
   bio_summary: string;
   available_for_work: boolean;
   profile_image: string;
+  profile_image_light?: string;
+  profile_image_dark?: string;
   portfolio_image: string;
   profile_alt: string;
   github_url: string;

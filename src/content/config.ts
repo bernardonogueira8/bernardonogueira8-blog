@@ -17,6 +17,8 @@ const jsonDataCollection = defineCollection({
     type: "data",
     schema: z.object({
         profileImage: z.string(),
+        profileImageLight: z.string().optional(),
+        profileImageDark: z.string().optional(),
         profileAlt: z.string(),
         profileLink: z.string(),
         profileTitle: z.string(),

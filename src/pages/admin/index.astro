@@ -255,32 +255,72 @@ const pageTitle = "Painel Administrativo | Bernardo Studio";
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <!-- Coluna 1: Avatar e Imagens -->
           <div class="space-y-6">
+            <!-- Foto Tema Claro -->
             <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] flex flex-col items-center text-center">
-              <label class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider mb-4">
-                Foto de Perfil (Avatar)
-              </label>
-              <div class="relative size-36 rounded-full p-[3px] bg-linear-to-tr from-neutral-300 dark:from-white/20 to-neutral-400 dark:to-white/40 mb-4 shadow-sm">
+              <div class="flex items-center gap-1.5 mb-3">
+                <span class="size-2 rounded-full bg-amber-400"></span>
+                <label class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider">
+                  Foto Perfil (Tema Claro)
+                </label>
+              </div>
+              <div class="relative size-32 rounded-full p-[3px] bg-linear-to-tr from-amber-200 to-orange-300 dark:from-amber-500/30 dark:to-orange-500/30 mb-3 shadow-sm">
                 <img
-                  id="profileImagePreview"
-                  src="/profile.png"
-                  alt="Avatar Preview"
+                  id="profileImageLightPreview"
+                  src="/profile-light.png"
+                  alt="Avatar Claro Preview"
                   class="size-full rounded-full object-cover bg-neutral-200 dark:bg-zinc-800"
                 />
               </div>
 
-              <div class="w-full space-y-3">
-                <label class="block w-full py-2.5 px-3 rounded-2xl border border-dashed border-neutral-300 dark:border-white/20 hover:border-[#0071e3] text-center cursor-pointer transition-colors bg-neutral-50/50 dark:bg-zinc-900/40">
-                  <span class="text-xs font-semibold text-[#1d1d1f] dark:text-neutral-300">📁 Escolher Nova Foto</span>
-                  <input type="file" id="profileImageFileInput" accept="image/*" class="hidden" />
+              <div class="w-full space-y-2.5">
+                <label class="block w-full py-2 px-3 rounded-2xl border border-dashed border-neutral-300 dark:border-white/20 hover:border-[#0071e3] text-center cursor-pointer transition-colors bg-neutral-50/50 dark:bg-zinc-900/40">
+                  <span class="text-xs font-semibold text-[#1d1d1f] dark:text-neutral-300">📁 Escolher Foto Claro</span>
+                  <input type="file" id="profileImageLightFileInput" accept="image/*" class="hidden" />
                 </label>
-                <p id="profileUploadStatus" class="text-[11px] text-[#0071e3] hidden font-medium">Fazendo upload...</p>
+                <p id="profileLightUploadStatus" class="text-[11px] text-[#0071e3] hidden font-medium">Fazendo upload...</p>
 
                 <div class="text-left">
-                  <label class="block text-[11px] font-semibold text-[#86868b] mb-1">URL Direta da Foto</label>
+                  <label class="block text-[11px] font-semibold text-[#86868b] mb-1">URL Foto Claro</label>
                   <input
                     type="text"
-                    id="profileImageUrlInput"
-                    name="profile_image"
+                    id="profileImageLightUrlInput"
+                    name="profile_image_light"
+                    class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Foto Tema Escuro -->
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] flex flex-col items-center text-center">
+              <div class="flex items-center gap-1.5 mb-3">
+                <span class="size-2 rounded-full bg-indigo-500"></span>
+                <label class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider">
+                  Foto Perfil (Tema Escuro)
+                </label>
+              </div>
+              <div class="relative size-32 rounded-full p-[3px] bg-linear-to-tr from-indigo-300 to-purple-400 dark:from-indigo-500/30 dark:to-purple-500/30 mb-3 shadow-sm">
+                <img
+                  id="profileImageDarkPreview"
+                  src="/profile-dark.png"
+                  alt="Avatar Escuro Preview"
+                  class="size-full rounded-full object-cover bg-neutral-200 dark:bg-zinc-800"
+                />
+              </div>
+
+              <div class="w-full space-y-2.5">
+                <label class="block w-full py-2 px-3 rounded-2xl border border-dashed border-neutral-300 dark:border-white/20 hover:border-[#0071e3] text-center cursor-pointer transition-colors bg-neutral-50/50 dark:bg-zinc-900/40">
+                  <span class="text-xs font-semibold text-[#1d1d1f] dark:text-neutral-300">📁 Escolher Foto Escuro</span>
+                  <input type="file" id="profileImageDarkFileInput" accept="image/*" class="hidden" />
+                </label>
+                <p id="profileDarkUploadStatus" class="text-[11px] text-[#0071e3] hidden font-medium">Fazendo upload...</p>
+
+                <div class="text-left">
+                  <label class="block text-[11px] font-semibold text-[#86868b] mb-1">URL Foto Escuro</label>
+                  <input
+                    type="text"
+                    id="profileImageDarkUrlInput"
+                    name="profile_image_dark"
                     class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
                   />
                 </div>
@@ -894,10 +934,15 @@ const pageTitle = "Painel Administrativo | Bernardo Studio";
 
   // Elements: Profile Tab
   const profileForm = document.getElementById("profileForm") as HTMLFormElement;
-  const profileImagePreview = document.getElementById("profileImagePreview") as HTMLImageElement;
-  const profileImageUrlInput = document.getElementById("profileImageUrlInput") as HTMLInputElement;
-  const profileImageFileInput = document.getElementById("profileImageFileInput") as HTMLInputElement;
-  const profileUploadStatus = document.getElementById("profileUploadStatus") as HTMLElement;
+  const profileImageLightPreview = document.getElementById("profileImageLightPreview") as HTMLImageElement;
+  const profileImageLightUrlInput = document.getElementById("profileImageLightUrlInput") as HTMLInputElement;
+  const profileImageLightFileInput = document.getElementById("profileImageLightFileInput") as HTMLInputElement;
+  const profileLightUploadStatus = document.getElementById("profileLightUploadStatus") as HTMLElement;
+
+  const profileImageDarkPreview = document.getElementById("profileImageDarkPreview") as HTMLImageElement;
+  const profileImageDarkUrlInput = document.getElementById("profileImageDarkUrlInput") as HTMLInputElement;
+  const profileImageDarkFileInput = document.getElementById("profileImageDarkFileInput") as HTMLInputElement;
+  const profileDarkUploadStatus = document.getElementById("profileDarkUploadStatus") as HTMLElement;
   const portfolioImagePreview = document.getElementById("portfolioImagePreview") as HTMLImageElement;
   const portfolioImageUrlInput = document.getElementById("portfolioImageUrlInput") as HTMLInputElement;
   const portfolioImageFileInput = document.getElementById("portfolioImageFileInput") as HTMLInputElement;
@@ -1201,8 +1246,27 @@ const pageTitle = "Painel Administrativo | Bernardo Studio";
       profileTitleInput.value = data.profile_title || "";
       profileAvailableInput.checked = !!data.available_for_work;
       profileBioSummaryInput.value = data.bio_summary || "";
-      profileImageUrlInput.value = data.profile_image || "/profile.png";
-      profileImagePreview.src = data.profile_image || "/profile.png";
+      let lightImg = "/profile-light.png";
+      let darkImg = "/profile-dark.png";
+
+      if (data.profile_image && typeof data.profile_image === "string" && data.profile_image.trim().startsWith("{")) {
+        try {
+          const parsed = JSON.parse(data.profile_image);
+          if (parsed.light) lightImg = parsed.light;
+          if (parsed.dark) darkImg = parsed.dark;
+        } catch (e) {}
+      } else {
+        if (data.profile_image_light) lightImg = data.profile_image_light;
+        else if (data.profile_image) lightImg = data.profile_image;
+
+        if (data.profile_image_dark) darkImg = data.profile_image_dark;
+        else if (data.profile_image) darkImg = data.profile_image;
+      }
+
+      profileImageLightUrlInput.value = lightImg;
+      profileImageLightPreview.src = lightImg;
+      profileImageDarkUrlInput.value = darkImg;
+      profileImageDarkPreview.src = darkImg;
       portfolioImageUrlInput.value = data.portfolio_image || "/portfolio.png";
       portfolioImagePreview.src = data.portfolio_image || "/portfolio.png";
 
@@ -1246,26 +1310,50 @@ const pageTitle = "Painel Administrativo | Bernardo Studio";
     return publicUrlData.publicUrl;
   }
 
-  profileImageFileInput.addEventListener("change", async () => {
-    const file = profileImageFileInput.files?.[0];
+  // Foto Claro Upload & Input
+  profileImageLightFileInput.addEventListener("change", async () => {
+    const file = profileImageLightFileInput.files?.[0];
     if (!file) return;
-    profileUploadStatus.classList.remove("hidden");
-    profileUploadStatus.textContent = "Fazendo upload da foto...";
+    profileLightUploadStatus.classList.remove("hidden");
+    profileLightUploadStatus.textContent = "Fazendo upload da foto clara...";
     try {
-      const url = await uploadImageFile(file, "avatar");
-      profileImageUrlInput.value = url;
-      profileImagePreview.src = url;
-      profileUploadStatus.textContent = "Upload concluído!";
-      setTimeout(() => profileUploadStatus.classList.add("hidden"), 3000);
-      showToast("Foto enviada com sucesso!");
+      const url = await uploadImageFile(file, "avatar-light");
+      profileImageLightUrlInput.value = url;
+      profileImageLightPreview.src = url;
+      profileLightUploadStatus.textContent = "Upload concluído!";
+      setTimeout(() => profileLightUploadStatus.classList.add("hidden"), 3000);
+      showToast("Foto (Tema Claro) enviada com sucesso!");
     } catch (err: any) {
-      profileUploadStatus.textContent = `Erro: ${err.message}`;
+      profileLightUploadStatus.textContent = `Erro: ${err.message}`;
       showToast(`Erro no upload: ${err.message}`, true);
     }
   });
 
-  profileImageUrlInput.addEventListener("input", () => {
-    profileImagePreview.src = profileImageUrlInput.value || "/profile.png";
+  profileImageLightUrlInput.addEventListener("input", () => {
+    profileImageLightPreview.src = profileImageLightUrlInput.value || "/profile-light.png";
+  });
+
+  // Foto Escuro Upload & Input
+  profileImageDarkFileInput.addEventListener("change", async () => {
+    const file = profileImageDarkFileInput.files?.[0];
+    if (!file) return;
+    profileDarkUploadStatus.classList.remove("hidden");
+    profileDarkUploadStatus.textContent = "Fazendo upload da foto escura...";
+    try {
+      const url = await uploadImageFile(file, "avatar-dark");
+      profileImageDarkUrlInput.value = url;
+      profileImageDarkPreview.src = url;
+      profileDarkUploadStatus.textContent = "Upload concluído!";
+      setTimeout(() => profileDarkUploadStatus.classList.add("hidden"), 3000);
+      showToast("Foto (Tema Escuro) enviada com sucesso!");
+    } catch (err: any) {
+      profileDarkUploadStatus.textContent = `Erro: ${err.message}`;
+      showToast(`Erro no upload: ${err.message}`, true);
+    }
+  });
+
+  profileImageDarkUrlInput.addEventListener("input", () => {
+    profileImageDarkPreview.src = profileImageDarkUrlInput.value || "/profile-dark.png";
   });
 
   portfolioImageFileInput.addEventListener("change", async () => {
@@ -1287,12 +1375,18 @@ const pageTitle = "Painel Administrativo | Bernardo Studio";
 
   profileForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const lightImg = profileImageLightUrlInput.value.trim() || "/profile-light.png";
+    const darkImg = profileImageDarkUrlInput.value.trim() || "/profile-dark.png";
+
+    // Encode both images into the existing profile_image column to avoid schema cache missing column error
+    const profileImageValue = JSON.stringify({ light: lightImg, dark: darkImg });
+
     const updates = {
       profile_name: profileNameInput.value.trim(),
       profile_title: profileTitleInput.value.trim(),
       available_for_work: profileAvailableInput.checked,
       bio_summary: profileBioSummaryInput.value.trim(),
-      profile_image: profileImageUrlInput.value.trim() || "/profile.png",
+      profile_image: profileImageValue,
       portfolio_image: portfolioImageUrlInput.value.trim() || "/portfolio.png",
       github_url: profileGithubInput.value.trim(),
       linkedin_url: profileLinkedinInput.value.trim(),

@@ -1,0 +1,139 @@
+---
+interface Props {
+  lightImage?: string;
+  darkImage?: string;
+  alt?: string;
+  class?: string;
+  shape?: string;
+  link?: string;
+  linkAriaLabel?: string;
+}
+
+const {
+  lightImage = "/profile-light.png",
+  darkImage = "/profile-dark.png",
+  alt = "Foto de Bernardo Nogueira",
+  class: className = "w-full h-full",
+  shape = "rounded-full",
+  link,
+  linkAriaLabel = "Ver página sobre mim",
+} = Astro.props as Props;
+
+// Fallbacks
+const lightSrc = lightImage || "/profile-light.png";
+const darkSrc = darkImage || "/profile-dark.png";
+---
+
+<div class={`profile-theme-container relative ${className} ${shape}`}>
+  <div class={`profile-flip-card w-full h-full relative ${shape}`}>
+    <!-- Light Mode Face -->
+    <div class={`profile-face profile-face-light ${shape}`}>
+      <img
+        src={lightSrc}
+        alt={`${alt} (tema claro)`}
+        class="w-full h-full object-cover object-center pointer-events-none select-none"
+        loading="eager"
+      />
+      <div class="profile-shine"></div>
+      {link && (
+        <a href={link} class="absolute inset-0 z-10 block" aria-label={linkAriaLabel} />
+      )}
+    </div>
+
+    <!-- Dark Mode Face -->
+    <div class={`profile-face profile-face-dark ${shape}`}>
+      <img
+        src={darkSrc}
+        alt={`${alt} (tema escuro)`}
+        class="w-full h-full object-cover object-center pointer-events-none select-none"
+        loading="eager"
+      />
+      <div class="profile-shine"></div>
+      {link && (
+        <a href={link} class="absolute inset-0 z-10 block" aria-label={linkAriaLabel} />
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .profile-theme-container {
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+  }
+
+  .profile-flip-card {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.85s cubic-bezier(0.34, 1.4, 0.64, 1);
+    will-change: transform;
+  }
+
+  /* Smooth 3D 180-degree flip on theme switch */
+  :global(.dark) .profile-flip-card {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+  }
+
+  .profile-face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    overflow: hidden;
+  }
+
+  .profile-face-light {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    z-index: 2;
+  }
+
+  .profile-face-dark {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    z-index: 1;
+  }
+
+  :global(.dark) .profile-face-light {
+    z-index: 1;
+  }
+
+  :global(.dark) .profile-face-dark {
+    z-index: 2;
+  }
+
+  .profile-shine {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.06) 40%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+  }
+
+  :global(.dark) .profile-face-dark .profile-shine {
+    background: linear-gradient(
+      135deg,
+      rgba(251, 146, 60, 0.22) 0%,
+      rgba(255, 255, 255, 0.05) 45%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .profile-flip-card {
+      transition: none;
+    }
+  }
+</style>

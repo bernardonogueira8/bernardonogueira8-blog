@@ -1,5 +1,7 @@
 {
     "profileImage": "/profile.png",
+    "profileImageLight": "/profile-light.png",
+    "profileImageDark": "/profile-dark.png",
     "profileAlt": "Foto de Bernardo Nogueira para o portfólio",
     "profileLink": "/about-me",
     "profileTitle": "Data Scientist",

@@ -6,6 +6,7 @@ import Experience from "../components/portfolio/Experience.astro";
 import NavArticle from "../components/layout/NavArticle.astro";
 import Contact from "../components/portfolio/Contact.astro";
 import Tools from "../components/portfolio/Tools.astro";
+import ThemeProfileImage from "../components/ui/ThemeProfileImage.astro";
 import { getProfile } from "../lib/profile";
 
 const { frontmatter } = Astro.props;
@@ -52,16 +53,13 @@ const headline = profile.headline || "Data Scientist & Math Teacher apaixonado p
               >
               </div>
               <div class="relative z-20 flex w-full rounded-full bg-fire-900">
-                <div
-                  class="w-full aspect-square rounded-full bg-center bg-cover"
-                  style={`background-image: url(${profileImage})`}
-                  aria-label={`Foto de ${profileName}`}
-                >
-                  <a
-                    href="/about-me"
-                    class="flex h-full w-full"
-                    aria-label="Ver página sobre mim"></a>
-                </div>
+                <ThemeProfileImage
+                  lightImage={profile.profile_image_light || profileImage || "/profile-light.png"}
+                  darkImage={profile.profile_image_dark || profileImage || "/profile-dark.png"}
+                  alt={`Foto de ${profileName}`}
+                  class="w-full aspect-square"
+                  shape="rounded-full"
+                />
               </div>
             </div>
           </div>

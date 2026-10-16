@@ -8,6 +8,8 @@ export const defaultProfile: Profile = {
   bio_summary: 'Pós em Ciência de Dados Aplicada à Saúde e Matemática Financeira e Estatística, Meu conjunto de habilidades inclui Python, SQL, Visualização de Dados com Power BI e tecnologias como Large Language Models(LLMs).',
   available_for_work: true,
   profile_image: '/profile.png',
+  profile_image_light: '/profile-light.png',
+  profile_image_dark: '/profile-dark.png',
   portfolio_image: '/portfolio.png',
   profile_alt: 'Foto de Bernardo Nogueira para o portfólio',
   github_url: 'https://github.com/bernardonogueira8',
@@ -41,9 +43,33 @@ export async function getProfile(): Promise<Profile> {
       return defaultProfile;
     }
 
+    let lightImage = defaultProfile.profile_image_light || '/profile-light.png';
+    let darkImage = defaultProfile.profile_image_dark || '/profile-dark.png';
+    let mainImage = data.profile_image || defaultProfile.profile_image || '/profile.png';
+
+    // Decode if profile_image contains JSON format
+    if (typeof data.profile_image === 'string' && data.profile_image.trim().startsWith('{')) {
+      try {
+        const parsed = JSON.parse(data.profile_image);
+        if (parsed.light) lightImage = parsed.light;
+        if (parsed.dark) darkImage = parsed.dark;
+        mainImage = parsed.light || parsed.dark || '/profile.png';
+      } catch (e) {}
+    } else if (data.profile_image_light || data.profile_image_dark) {
+      if (data.profile_image_light) lightImage = data.profile_image_light;
+      if (data.profile_image_dark) darkImage = data.profile_image_dark;
+    } else if (data.profile_image && data.profile_image !== '/profile.png') {
+      mainImage = data.profile_image;
+      lightImage = data.profile_image;
+      darkImage = data.profile_image;
+    }
+
     return {
       ...defaultProfile,
       ...data,
+      profile_image: mainImage,
+      profile_image_light: lightImage,
+      profile_image_dark: darkImage,
       hobbies: Array.isArray(data.hobbies) ? data.hobbies : defaultProfile.hobbies,
     };
   } catch (err) {
@@ -54,11 +80,21 @@ export async function getProfile(): Promise<Profile> {
 
 export async function updateProfile(updates: Partial<Profile>): Promise<{ success: boolean; error?: string }> {
   try {
+    const payload: any = { ...updates };
+    // If separate column keys are present, encode them into profile_image to prevent missing column schema errors
+    if (payload.profile_image_light || payload.profile_image_dark) {
+      const light = payload.profile_image_light || '/profile-light.png';
+      const dark = payload.profile_image_dark || '/profile-dark.png';
+      payload.profile_image = JSON.stringify({ light, dark });
+      delete payload.profile_image_light;
+      delete payload.profile_image_dark;
+    }
+
     const { error } = await supabase
       .from('profile')
       .upsert({
         id: 'main',
-        ...updates,
+        ...payload,
         updated_at: new Date().toISOString(),
       });
 

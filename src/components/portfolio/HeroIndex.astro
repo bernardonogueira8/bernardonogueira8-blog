@@ -4,6 +4,7 @@ import Heading from "../ui/Heading.astro";
 import Tools from "../portfolio/Tools.astro";
 import { Icon } from "astro-icon/components";
 import Hobbies from "../portfolio/Hobbies.astro";
+import ThemeProfileImage from "../ui/ThemeProfileImage.astro";
 import { getProfile } from "../../lib/profile";
 import type { Profile } from "../../lib/supabase";
 
@@ -48,16 +49,15 @@ const {
           >
           </div>
           <div class="relative z-20 flex w-full rounded-full bg-fire-900">
-            <div
-              class="w-full aspect-square rounded-full bg-center bg-cover"
-              style={`background-image: url(${profile_image})`}
-              aria-label={profile_alt}
-            >
-              <a
-                href="/about-me"
-                class="flex h-full w-full"
-                aria-label="Ver página sobre mim"></a>
-            </div>
+            <ThemeProfileImage
+              lightImage={profile.profile_image_light || profile_image || "/profile-light.png"}
+              darkImage={profile.profile_image_dark || profile_image || "/profile-dark.png"}
+              alt={profile_alt}
+              class="w-full aspect-square"
+              shape="rounded-full"
+              link="/about-me"
+              linkAriaLabel="Ver página sobre mim"
+            />
           </div>
         </div>
       </div>
