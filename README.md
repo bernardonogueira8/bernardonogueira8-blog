@@ -62,7 +62,7 @@ Pronto! Agora é só abrir `http://localhost:4321` no seu navegador para ver o s
 
 Adoraria me conectar com você! Me encontre nas redes abaixo:
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bernardo_Nogueira-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/SEU_USUARIO_AQUI/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bernardo_Nogueira-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/bernardonogueira8/)
 [![GitHub](https://img.shields.io/badge/GitHub-bernardonogueira8-181717?style=for-the-badge&logo=github)](https://github.com/bernardonogueira8)
 
 ---
