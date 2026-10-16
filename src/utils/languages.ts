@@ -161,5 +161,10 @@ export const languages: Record<string, Language> = {
 };
 
 export const getLanguage = (lang: string): Language => {
-    return languages[lang] || languages.html;
+    if (languages[lang]) return languages[lang];
+    const formattedName = lang ? lang.charAt(0).toUpperCase() + lang.slice(1) : "Tech";
+    return {
+        name: formattedName,
+        iconName: "code",
+    };
 };

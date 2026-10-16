@@ -1,16 +1,14 @@
 ---
 import Heading from "../ui/Heading.astro";
 import Button from "../ui/Button.astro";
-import { getCollection } from "astro:content";
+import { getProfile } from "../../lib/profile";
 
-const [staticData] = await getCollection("staticData");
-const {
-  contactSectionTitle,
-  contactSectionSubtitle,
-  contactSectionButtonText,
-  email,
-  contactSectionButtonIcon,
-} = staticData.data;
+const profile = await getProfile();
+const contactSectionTitle = profile.contact_title || "Quer transformar dados em insights?";
+const contactSectionSubtitle = profile.contact_subtitle || "Vamos conversar!";
+const contactSectionButtonText = profile.contact_button_text || "Fale Comigo";
+const email = profile.email || "bernardonogueira8@hotmail.com";
+const contactSectionButtonIcon = "paperplane";
 ---
 
 <section>

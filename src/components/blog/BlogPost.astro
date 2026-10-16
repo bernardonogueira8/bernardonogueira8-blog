@@ -1,5 +1,5 @@
 ---
-const { title, url, date, image, tags = [], languages = [] } = Astro.props;
+const { title, url, date, image, tags = [], languages = [], mediumUrl = null } = Astro.props;
 
 import Tag from "../ui/Tag.astro";
 import ReadMore from "../ui/ReadMore.astro"; // Manter o nome do componente, mas o texto interno seria "Ler Mais"
@@ -9,12 +9,35 @@ import Capsule from "../ui/Capsule.astro";
 ---
 
 <article class="bg-white dark:bg-zinc-900/25 dark:border dark:border-zinc-800 dark:hover:border-amber-300 hover:backdrop-blur-none backdrop-blur-lg shadow-sm overflow-auto hover:shadow-[5px_5px_rgba(146,80,0,0.4),10px_10px_rgba(146,80,0,0.3),15px_15px_rgba(146,80,0,0.2),20px_20px_rgba(146,80,0,0.1),25px_25px_rgba(146,80,0,0.05)] p-8 max-md:p-6 w-full flex justify-between items-center bg-linear-to-r hover:from-amber-200 hover:to-yellow-200 dark:hover:from-orange-500 dark:hover:to-yellow-500 transition-all hover:scale-105 duration-200 ease-in-out gap-8 max-md:gap-4 rounded-3xl max-md:flex-col-reverse">
-    <div class="flex flex-col">
-        <a href={url} class="flex flex-col gap-4 w-full">
-            <DatePub date={date} />
-            <h2 class="dark:text-orange-50 text-blacktext text-3xl font-bold text-pretty">{title}</h2>
-            <ReadMore />
-        </a>
+    <div class="flex flex-col flex-1">
+        <div class="flex flex-col gap-4 w-full">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+                <DatePub date={date} />
+                {
+                  mediumUrl && (
+                    <a
+                      href={mediumUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-neutral-100 hover:bg-neutral-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-neutral-700 dark:text-neutral-300 transition-colors shadow-2xs"
+                      title="Ver também no Medium"
+                      onclick="event.stopPropagation();"
+                    >
+                      <svg class="size-3 fill-current shrink-0" viewBox="0 0 24 24">
+                        <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                      </svg>
+                      <span>Medium ↗</span>
+                    </a>
+                  )
+                }
+            </div>
+            <a href={url} class="group">
+                <h2 class="dark:text-orange-50 text-blacktext text-3xl font-bold text-pretty group-hover:text-[#0071e3] transition-colors">{title}</h2>
+            </a>
+            <a href={url}>
+                <ReadMore />
+            </a>
+        </div>
         <div class="gap-3 mt-3 flex flex-col">
             <div class="flex gap-2 flex-wrap">
                 

@@ -1,0 +1,21 @@
+---
+import MarkdownAbout from "../layouts/MarkdownAbout.astro";
+import { getProfile } from "../lib/profile";
+import { marked } from "marked";
+
+const profile = await getProfile();
+const contentHtml = marked.parse(profile.about_content || "");
+
+const frontmatter = {
+  title: profile.about_title || "Bernardo Nogueira | Data Science, Matemática e Gastronomia 🚀",
+  description: profile.about_description || "Minha jornada entre números, dados, sabores e tecnologia.",
+  image: {
+    url: profile.profile_image || "/profile.png",
+    alt: `Foto de ${profile.profile_name}`,
+  },
+};
+---
+
+<MarkdownAbout frontmatter={frontmatter}>
+  <div set:html={contentHtml} />
+</MarkdownAbout>

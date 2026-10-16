@@ -2,18 +2,10 @@
 import ExperienceItem from "./ExperienceItem.astro";
 import Heading from "../ui/Heading.astro";
 import { Icon } from "astro-icon/components";
-import { getCollection } from "astro:content";
+import { getExperiences } from "../../lib/experiences";
 
-// Pegando todos os markdowns da coleção
-const experienceEntries = await getCollection("experience");
-
-// Ordenando do mais recente pro mais antigo (usando o campo "order")
-const EXPERIENCE = experienceEntries
-  .sort((a, b) => b.data.order - a.data.order)
-  .map(({ data }) => data);
-
+const experiences = await getExperiences();
 ---
-
 
 <section class="py-8 px-8 max-md:py-4 mb-4 scroll-m-16" id="experience">
   <div class="flex flex-col pt-8 max-w-4xl mx-auto">
@@ -25,17 +17,22 @@ const EXPERIENCE = experienceEntries
     <div class="relative max-md:mt-0 mt-8" aria-label="Professional experience">
       <ol class="relative mt-10">
         {
-          EXPERIENCE.map((experience, index) => (
+          experiences.map((experience, index) => (
             <li>
               <article
                 role="article"
                 aria-labelledby={`experience-title-${index}`}
               >
                 <div
-                  class="flex flex-col gap-2  text-zinc-00 dark:text-zinc-300 md:col-span-3"
+                  class="flex flex-col gap-2 text-zinc-00 dark:text-zinc-300 md:col-span-3"
                   aria-describedby={`experience-title-${index}`}
                 >
-                  <ExperienceItem {...experience} />
+                  <ExperienceItem
+                    title={experience.title}
+                    company={experience.company}
+                    description={experience.description}
+                    date={experience.period}
+                  />
                 </div>
               </article>
             </li>

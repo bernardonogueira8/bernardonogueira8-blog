@@ -1,9 +1,12 @@
 ---
 import Social from "../ui/Social.astro";
-import { getCollection } from "astro:content";
+import { getProfile } from "../../lib/profile";
 
-const [staticData] = await getCollection("staticData");
-const { github, githubIconName, linkedin, linkedinIconName } = staticData.data;
+const profile = await getProfile();
+const github = profile.github_url || "https://github.com/bernardonogueira8";
+const linkedin = profile.linkedin_url || "https://www.linkedin.com/in/bernardonogueira8";
+const githubIconName = "github";
+const linkedinIconName = "linkedin";
 
 const { items = [] }: { items: (keyof typeof menu)[] } = Astro.props as {
   items: (keyof typeof menu)[];

@@ -1,33 +1,34 @@
 ---
-const allTools = [
-  "power",
-  "mysql",
-  "sql",
-  "python",
-  'pandas',
-  'numpy',
-  'seaborn',
-  'matplotlib',
-  "php",
-  "git",
-  "figma",
-  "markdown",
-];
-
 import Capsule from "../ui/Capsule.astro";
+import { getTechStack } from "../../lib/techStack";
+
+interface Props {
+  variant?: "default" | "center";
+  linkEnabled?: boolean;
+  size?: "xs" | "md";
+  tools?: string[];
+}
+
+const { variant = "default", linkEnabled = false, size = "md", tools: propTools } = Astro.props as Props;
+
+let allTools: string[] = [];
+if (propTools && propTools.length > 0) {
+  allTools = propTools;
+} else {
+  const stack = await getTechStack(true);
+  allTools = stack.map((t) => t.key);
+}
 
 type ToolVariant = "default" | "center";
 
 // Base classes that are common to all variants
-const baseClasses = "flex flex-wrap gap-4 max-lg:gap-1 grid-auto-efe";
+const baseClasses = "flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 items-center content-start";
 
 // Variant-specific classes
 const variantClasses: Record<ToolVariant, string> = {
   default: "cursor-default",
   center: "justify-center cursor-default",
 };
-
-const { variant = "default", linkEnabled = false, size = "md" } = Astro.props;
 
 // Combine base classes with variant-specific classes
 const classes = `${baseClasses} ${variantClasses[variant as ToolVariant]}`;
