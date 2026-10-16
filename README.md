@@ -1,10 +1,10 @@
 # Portfólio Pessoal - Bernardo Nogueira
-![Demonstração do Portfólio](https://github.com/bernardonogueira8/bernardonogueira8.github.io/blob/main/public/Anima%C3%A7%C3%A3o.gif?raw=true)
+![Demonstração do Portfólio](https://github.com/bernardonogueira8/bernardonogueira8-blog/blob/main/public/Anima%C3%A7%C3%A3o.gif?raw=true)
 Este é o lugar onde eu, Bernardo Nogueira, centralizo meus projetos, artigos e minha jornada no mundo da tecnologia. Sou um Cientista de Dados com uma trajetória única, combinando a precisão da Análise e Desenvolvimento de Sistemas com a criatividade da Gastronomia e a solidez da Matemática.
 
 Aqui você vai encontrar um pouco de tudo que eu faço e estudo, desde dashboards e modelos de Machine Learning até tutoriais sobre programação e matemática.
 
-🚀 **Confira a versão ao vivo:** [bernardonogueira8.github.io](https://bernardonogueira8.github.io/)
+🚀 **Confira a versão ao vivo:** [bernardonogueira8.vercel.app](https://bernardonogueira8.vercel.app)
 
 ---
 ### ✨ Funcionalidades
