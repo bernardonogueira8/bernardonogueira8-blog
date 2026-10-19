@@ -1,55 +1,51 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const pageTitle = "Painel Administrativo | Bernardo SaaS Studio";
+const pageTitle = "Painel Administrativo | Bernardo Studio";
 ---
 
 <Layout pageTitle={pageTitle}>
-  <div id="adminApp" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[85vh]">
-    <!-- Top Navigation / Header -->
-    <header class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-8 border-b border-neutral-200 dark:border-zinc-800">
-      <div>
-        <div class="flex items-center gap-3">
-          <span class="inline-flex items-center justify-center size-10 rounded-xl bg-linear-to-tr from-mint-500 to-emerald-600 text-white font-bold text-lg shadow-md shadow-mint-500/20">
-            BN
-          </span>
-          <div>
-            <h1 class="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight flex items-center gap-2">
-              SaaS Blog Studio
-              <span class="text-xs px-2.5 py-0.5 rounded-full font-semibold bg-mint-500/10 text-mint-500 border border-mint-500/20">
-                Supabase + Vercel
-              </span>
-            </h1>
-            <p id="userEmailBadge" class="text-xs text-neutral-500 dark:text-neutral-400">Verificando sessão...</p>
-          </div>
+  <div id="adminApp" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[90vh]">
+    <!-- Apple-style Navigation Header -->
+    <header class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-neutral-200/70 dark:border-white/10">
+      <div class="flex items-center gap-3.5">
+        <span class="inline-flex items-center justify-center size-11 rounded-2xl bg-[#0071e3] text-white font-extrabold text-lg shadow-sm shadow-[#0071e3]/20">
+          BN
+        </span>
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1d1d1f] dark:text-white tracking-tight flex items-center gap-2.5">
+            Studio Administrativo
+            <span class="text-[11px] px-2.5 py-0.5 rounded-full font-bold bg-[#0071e3]/10 text-[#0071e3] border border-[#0071e3]/20">
+              Supabase CMS
+            </span>
+          </h1>
+          <p id="userEmailBadge" class="text-xs text-[#86868b] dark:text-[#a1a1a6] font-medium">Verificando sessão de administrador...</p>
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center gap-3">
+      <div class="flex flex-wrap items-center gap-2">
+        <a
+          href="/"
+          target="_blank"
+          class="px-4 py-2 text-xs font-semibold rounded-full border border-neutral-300/80 dark:border-white/15 hover:bg-neutral-100 dark:hover:bg-white/5 text-[#1d1d1f] dark:text-white active:scale-[0.98] transition-all flex items-center gap-1.5"
+        >
+          <svg class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          Ver Site
+        </a>
         <a
           href="/blog/"
           target="_blank"
-          class="px-4 py-2 text-xs font-semibold rounded-xl border border-neutral-300 dark:border-zinc-700 hover:bg-neutral-100 dark:hover:bg-zinc-800 text-neutral-700 dark:text-neutral-300 transition-all flex items-center gap-1.5"
+          class="px-4 py-2 text-xs font-semibold rounded-full border border-neutral-300/80 dark:border-white/15 hover:bg-neutral-100 dark:hover:bg-white/5 text-[#1d1d1f] dark:text-white active:scale-[0.98] transition-all flex items-center gap-1.5"
         >
-          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
           Ver Blog
-        </a>
-        <a
-          href="/admin/posts/new"
-          class="px-4 py-2 text-xs font-semibold rounded-xl bg-linear-to-r from-mint-500 to-emerald-600 hover:from-mint-600 hover:to-emerald-700 text-white shadow-md shadow-mint-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-1.5"
-        >
-          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-          </svg>
-          Novo Post
         </a>
         <button
           id="logoutBtn"
-          class="px-3.5 py-2 text-xs font-semibold rounded-xl border border-rose-500/20 text-rose-500 hover:bg-rose-500/10 transition-all cursor-pointer flex items-center gap-1"
+          class="px-4 py-2 text-xs font-semibold rounded-full border border-rose-500/20 text-rose-500 hover:bg-rose-500/10 active:scale-[0.98] transition-all cursor-pointer flex items-center gap-1.5"
         >
-          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
           Sair
@@ -57,134 +53,975 @@ const pageTitle = "Painel Administrativo | Bernardo SaaS Studio";
       </div>
     </header>
 
-    <!-- KPI / Metric Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
-      <div class="p-5 rounded-2xl bg-white/70 dark:bg-zinc-900/60 border border-neutral-200 dark:border-zinc-800 backdrop-blur-md shadow-xs">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Total de Posts</span>
-          <span class="size-8 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center">
-            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
-          </span>
+    <!-- Apple-style Segmented Control Menu Bar -->
+    <nav class="my-6 p-1 bg-neutral-100 dark:bg-zinc-800/80 rounded-2xl flex items-center gap-1 overflow-x-auto scrollbar-none border border-neutral-200/60 dark:border-white/5" aria-label="Menu Administrativo">
+      <button
+        type="button"
+        data-tab="posts"
+        class="admin-nav-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap bg-white dark:bg-zinc-700 text-[#1d1d1f] dark:text-white shadow-xs"
+      >
+        <span>📝</span>
+        <span>Posts & Blog</span>
+        <span id="tabCountPosts" class="ml-1 px-1.5 py-0.5 rounded-md text-[10px] bg-neutral-100 dark:bg-zinc-800 text-neutral-600 dark:text-neutral-300 font-bold">-</span>
+      </button>
+
+      <button
+        type="button"
+        data-tab="profile"
+        class="admin-nav-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap text-[#86868b] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white"
+      >
+        <span>👤</span>
+        <span>Perfil & Links</span>
+      </button>
+
+      <button
+        type="button"
+        data-tab="experiences"
+        class="admin-nav-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap text-[#86868b] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white"
+      >
+        <span>💼</span>
+        <span>Experiências</span>
+        <span id="tabCountExperiences" class="ml-1 px-1.5 py-0.5 rounded-md text-[10px] bg-neutral-200 dark:bg-zinc-800 text-neutral-600 dark:text-neutral-300 font-bold">-</span>
+      </button>
+
+      <button
+        type="button"
+        data-tab="tech-stack"
+        class="admin-nav-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap text-[#86868b] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white"
+      >
+        <span>⚡</span>
+        <span>Tech Stack</span>
+        <span id="tabCountTech" class="ml-1 px-1.5 py-0.5 rounded-md text-[10px] bg-neutral-200 dark:bg-zinc-800 text-neutral-600 dark:text-neutral-300 font-bold">-</span>
+      </button>
+
+      <button
+        type="button"
+        data-tab="about"
+        class="admin-nav-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap text-[#86868b] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white"
+      >
+        <span>📖</span>
+        <span>Sobre Mim</span>
+      </button>
+    </nav>
+
+    <!-- Global Floating Toast Notification -->
+    <div id="toastMessage" class="hidden fixed bottom-6 right-6 z-50 px-5 py-3 rounded-2xl bg-[#0071e3] text-white font-semibold text-xs shadow-xl shadow-[#0071e3]/20 flex items-center gap-2 transition-all">
+      <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+      <span id="toastText">Ação realizada com sucesso!</span>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 1: POSTS & BLOG                        -->
+    <!-- ========================================== -->
+    <div id="panel-posts" class="admin-tab-panel">
+      <!-- Apple Clean Metric Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="p-5 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#86868b]">Total de Posts</span>
+            <span class="size-8 rounded-xl bg-[#0071e3]/10 text-[#0071e3] flex items-center justify-center font-bold">
+              📝
+            </span>
+          </div>
+          <p id="kpiTotal" class="text-3xl font-extrabold text-[#1d1d1f] dark:text-white mt-2">-</p>
         </div>
-        <p id="kpiTotal" class="text-3xl font-bold text-neutral-900 dark:text-white mt-2">-</p>
+
+        <div class="p-5 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#86868b]">Publicados</span>
+            <span class="size-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
+              ✓
+            </span>
+          </div>
+          <p id="kpiPublished" class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-2">-</p>
+        </div>
+
+        <div class="p-5 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#86868b]">Rascunhos</span>
+            <span class="size-8 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
+              ⏳
+            </span>
+          </div>
+          <p id="kpiDrafts" class="text-3xl font-extrabold text-amber-500 mt-2">-</p>
+        </div>
+
+        <div class="p-5 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#86868b]">Projetos</span>
+            <span class="size-8 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center font-bold">
+              ⭐
+            </span>
+          </div>
+          <p id="kpiProjects" class="text-3xl font-extrabold text-purple-500 mt-2">-</p>
+        </div>
       </div>
 
-      <div class="p-5 rounded-2xl bg-white/70 dark:bg-zinc-900/60 border border-neutral-200 dark:border-zinc-800 backdrop-blur-md shadow-xs">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Publicados</span>
-          <span class="size-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          </span>
+      <!-- Controls: Search, Filter & New Post -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6">
+        <div class="relative flex-1 max-w-md">
+          <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-[#86868b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar por título, tag ou slug..."
+            class="w-full pl-10 pr-4 py-2.5 rounded-full bg-white dark:bg-[#121215] border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all"
+          />
         </div>
-        <p id="kpiPublished" class="text-3xl font-bold text-emerald-500 mt-2">-</p>
+
+        <div class="flex items-center gap-2">
+          <button
+            data-filter="all"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1d1d1f] text-white dark:bg-white dark:text-[#1d1d1f] shadow-xs cursor-pointer transition-all"
+          >
+            Todos
+          </button>
+          <button
+            data-filter="published"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#86868b] dark:text-[#a1a1a6] hover:bg-neutral-100 dark:hover:bg-white/5 cursor-pointer transition-all"
+          >
+            Publicados
+          </button>
+          <button
+            data-filter="draft"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#86868b] dark:text-[#a1a1a6] hover:bg-neutral-100 dark:hover:bg-white/5 cursor-pointer transition-all"
+          >
+            Rascunhos
+          </button>
+          <a
+            href="/admin/posts/new"
+            class="ml-2 px-4 py-2 text-xs font-bold rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white shadow-sm shadow-[#0071e3]/20 active:scale-[0.98] transition-all flex items-center gap-1.5"
+          >
+            <svg class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Novo Post
+          </a>
+        </div>
       </div>
 
-      <div class="p-5 rounded-2xl bg-white/70 dark:bg-zinc-900/60 border border-neutral-200 dark:border-zinc-800 backdrop-blur-md shadow-xs">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Rascunhos</span>
-          <span class="size-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center">
-            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-          </span>
+      <!-- Posts Table Card -->
+      <div class="bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 rounded-3xl overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-neutral-200/70 dark:border-white/10 bg-neutral-50/50 dark:bg-white/5 text-[11px] font-bold text-[#86868b] uppercase tracking-wider">
+                <th class="py-4 px-6">Post</th>
+                <th class="py-4 px-6">Data</th>
+                <th class="py-4 px-6">Tags & Techs</th>
+                <th class="py-4 px-6">Status</th>
+                <th class="py-4 px-6 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="postsTableBody" class="divide-y divide-neutral-200/70 dark:divide-white/5 text-xs font-medium">
+              <tr>
+                <td colspan="5" class="py-12 text-center text-[#86868b]">
+                  <svg class="animate-spin size-6 mx-auto mb-2 text-[#0071e3]" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Carregando publicações do Supabase...
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <p id="kpiDrafts" class="text-3xl font-bold text-amber-500 mt-2">-</p>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-white/70 dark:bg-zinc-900/60 border border-neutral-200 dark:border-zinc-800 backdrop-blur-md shadow-xs">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Projetos em Destaque</span>
-          <span class="size-8 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center">
-            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
-          </span>
-        </div>
-        <p id="kpiProjects" class="text-3xl font-bold text-purple-500 mt-2">-</p>
       </div>
     </div>
 
-    <!-- Controls: Search and Filter -->
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6">
-      <div class="relative flex-1 max-w-md">
-        <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Buscar por título, tag ou slug..."
-          class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-zinc-900 border border-neutral-200 dark:border-zinc-800 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-mint-500 transition-all"
-        />
+    <!-- ========================================== -->
+    <!-- TAB 2: PERFIL & LINKS                      -->
+    <!-- ========================================== -->
+    <div id="panel-profile" class="admin-tab-panel hidden">
+      <form id="profileForm" class="space-y-6">
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-200/70 dark:border-white/10">
+          <div>
+            <h2 class="text-xl font-bold text-[#1d1d1f] dark:text-white">Identidade & Links Pessoais</h2>
+            <p class="text-xs text-[#86868b]">Configure foto, nome, títulos, resumo e links exibidos na Home e no Rodapé.</p>
+          </div>
+          <button
+            type="submit"
+            id="saveProfileBtn"
+            class="px-5 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-bold text-xs shadow-sm shadow-[#0071e3]/20 active:scale-[0.98] transition-all cursor-pointer flex items-center gap-2"
+          >
+            <span>Salvar Perfil</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Coluna 1: Avatar e Imagens -->
+          <div class="space-y-6">
+            <!-- Foto Tema Claro -->
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] flex flex-col items-center text-center">
+              <div class="flex items-center gap-1.5 mb-3">
+                <span class="size-2 rounded-full bg-amber-400"></span>
+                <label class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider">
+                  Foto Perfil (Tema Claro)
+                </label>
+              </div>
+              <div class="relative size-32 rounded-full p-[3px] bg-linear-to-tr from-amber-200 to-orange-300 dark:from-amber-500/30 dark:to-orange-500/30 mb-3 shadow-sm">
+                <img
+                  id="profileImageLightPreview"
+                  src="/profile-light.png"
+                  alt="Avatar Claro Preview"
+                  class="size-full rounded-full object-cover bg-neutral-200 dark:bg-zinc-800"
+                />
+              </div>
+
+              <div class="w-full space-y-2.5">
+                <label class="block w-full py-2 px-3 rounded-2xl border border-dashed border-neutral-300 dark:border-white/20 hover:border-[#0071e3] text-center cursor-pointer transition-colors bg-neutral-50/50 dark:bg-zinc-900/40">
+                  <span class="text-xs font-semibold text-[#1d1d1f] dark:text-neutral-300">📁 Escolher Foto Claro</span>
+                  <input type="file" id="profileImageLightFileInput" accept="image/*" class="hidden" />
+                </label>
+                <p id="profileLightUploadStatus" class="text-[11px] text-[#0071e3] hidden font-medium">Fazendo upload...</p>
+
+                <div class="text-left">
+                  <label class="block text-[11px] font-semibold text-[#86868b] mb-1">URL Foto Claro</label>
+                  <input
+                    type="text"
+                    id="profileImageLightUrlInput"
+                    name="profile_image_light"
+                    class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Foto Tema Escuro -->
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] flex flex-col items-center text-center">
+              <div class="flex items-center gap-1.5 mb-3">
+                <span class="size-2 rounded-full bg-indigo-500"></span>
+                <label class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider">
+                  Foto Perfil (Tema Escuro)
+                </label>
+              </div>
+              <div class="relative size-32 rounded-full p-[3px] bg-linear-to-tr from-indigo-300 to-purple-400 dark:from-indigo-500/30 dark:to-purple-500/30 mb-3 shadow-sm">
+                <img
+                  id="profileImageDarkPreview"
+                  src="/profile-dark.png"
+                  alt="Avatar Escuro Preview"
+                  class="size-full rounded-full object-cover bg-neutral-200 dark:bg-zinc-800"
+                />
+              </div>
+
+              <div class="w-full space-y-2.5">
+                <label class="block w-full py-2 px-3 rounded-2xl border border-dashed border-neutral-300 dark:border-white/20 hover:border-[#0071e3] text-center cursor-pointer transition-colors bg-neutral-50/50 dark:bg-zinc-900/40">
+                  <span class="text-xs font-semibold text-[#1d1d1f] dark:text-neutral-300">📁 Escolher Foto Escuro</span>
+                  <input type="file" id="profileImageDarkFileInput" accept="image/*" class="hidden" />
+                </label>
+                <p id="profileDarkUploadStatus" class="text-[11px] text-[#0071e3] hidden font-medium">Fazendo upload...</p>
+
+                <div class="text-left">
+                  <label class="block text-[11px] font-semibold text-[#86868b] mb-1">URL Foto Escuro</label>
+                  <input
+                    type="text"
+                    id="profileImageDarkUrlInput"
+                    name="profile_image_dark"
+                    class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Imagem de Projetos (Home) -->
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+              <label class="block text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider mb-3">
+                Capa de Projetos (Home)
+              </label>
+              <img
+                id="portfolioImagePreview"
+                src="/portfolio.png"
+                alt="Portfolio Preview"
+                class="w-full h-32 rounded-2xl object-cover bg-neutral-100 dark:bg-zinc-800 mb-3"
+              />
+              <label class="block w-full py-2 px-3 rounded-2xl border border-dashed border-neutral-300 dark:border-white/20 hover:border-[#0071e3] text-center cursor-pointer transition-colors bg-neutral-50/50 dark:bg-zinc-900/40 text-xs font-semibold text-[#1d1d1f] dark:text-neutral-300">
+                <span>📁 Upload de Capa</span>
+                <input type="file" id="portfolioImageFileInput" accept="image/*" class="hidden" />
+              </label>
+              <input
+                type="text"
+                id="portfolioImageUrlInput"
+                name="portfolio_image"
+                class="w-full mt-2 px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+              />
+            </div>
+          </div>
+
+          <!-- Coluna 2 e 3: Informações e Links -->
+          <div class="lg:col-span-2 space-y-6">
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] space-y-4">
+              <h3 class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider flex items-center gap-2">
+                <span>👤</span> Dados Principais
+              </h3>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Nome Completo</label>
+                  <input
+                    type="text"
+                    id="profileNameInput"
+                    name="profile_name"
+                    required
+                    class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs font-medium text-[#1d1d1f] dark:text-white focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3]"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Título / Cargo Principal</label>
+                  <input
+                    type="text"
+                    id="profileTitleInput"
+                    name="profile_title"
+                    required
+                    class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs font-medium text-[#1d1d1f] dark:text-white focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="flex items-center gap-2 cursor-pointer mt-1">
+                  <input type="checkbox" id="profileAvailableInput" name="available_for_work" class="rounded text-[#0071e3] focus:ring-[#0071e3] size-4" />
+                  <span class="text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea]">Badge ativo na Home: "Disponível para trabalho"</span>
+                </label>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">
+                  Resumo da Página Inicial (Hero na Home)
+                </label>
+                <textarea
+                  id="profileBioSummaryInput"
+                  name="bio_summary"
+                  rows="3"
+                  class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs font-medium text-[#1d1d1f] dark:text-white focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3]"
+                ></textarea>
+                <p class="text-[11px] text-[#86868b] mt-1">Texto descritivo exibido logo abaixo do nome e cargo na tela inicial.</p>
+              </div>
+            </div>
+
+            <!-- Links Pessoais e Redes -->
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] space-y-4">
+              <h3 class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider flex items-center gap-2">
+                <span>🔗</span> Links Pessoais & Redes Sociais
+              </h3>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">GitHub URL</label>
+                  <input
+                    type="url"
+                    id="profileGithubInput"
+                    name="github_url"
+                    class="w-full px-3.5 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">LinkedIn URL</label>
+                  <input
+                    type="url"
+                    id="profileLinkedinInput"
+                    name="linkedin_url"
+                    class="w-full px-3.5 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Instagram URL</label>
+                  <input
+                    type="url"
+                    id="profileInstagramInput"
+                    name="instagram_url"
+                    class="w-full px-3.5 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">YouTube URL</label>
+                  <input
+                    type="url"
+                    id="profileYoutubeInput"
+                    name="youtube_url"
+                    class="w-full px-3.5 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Medium URL</label>
+                  <input
+                    type="url"
+                    id="profileMediumInput"
+                    name="medium_url"
+                    placeholder="https://medium.com/@bernardonogueira8"
+                    class="w-full px-3.5 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Email de Contato</label>
+                  <input
+                    type="email"
+                    id="profileEmailInput"
+                    name="email"
+                    class="w-full px-3.5 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Alias / Username (@)</label>
+                  <input
+                    type="text"
+                    id="profileAliasInput"
+                    name="alias"
+                    class="w-full px-3.5 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Seção de Chamada para Contato -->
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] space-y-4">
+              <h3 class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider flex items-center gap-2">
+                <span>💬</span> Seção de Contato (CTA)
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Título</label>
+                  <input
+                    type="text"
+                    id="profileContactTitleInput"
+                    name="contact_title"
+                    class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Subtítulo (Gradiente)</label>
+                  <input
+                    type="text"
+                    id="profileContactSubtitleInput"
+                    name="contact_subtitle"
+                    class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Texto do Botão</label>
+                  <input
+                    type="text"
+                    id="profileContactBtnTextInput"
+                    name="contact_button_text"
+                    class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: EXPERIÊNCIAS                        -->
+    <!-- ========================================== -->
+    <div id="panel-experiences" class="admin-tab-panel hidden space-y-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-neutral-200/70 dark:border-white/10">
+        <div>
+          <h2 class="text-xl font-bold text-[#1d1d1f] dark:text-white">Experiências Profissionais</h2>
+          <p class="text-xs text-[#86868b]">Adicione, edite e organize a timeline de carreira exibida no portfólio.</p>
+        </div>
+        <button
+          type="button"
+          id="openNewExpModalBtn"
+          class="px-4 py-2 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-bold text-xs shadow-sm shadow-[#0071e3]/20 active:scale-[0.98] transition-all cursor-pointer flex items-center gap-1.5"
+        >
+          <svg class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Nova Experiência
+        </button>
       </div>
 
-      <div class="flex items-center gap-2">
-        <button
-          data-filter="all"
-          class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 cursor-pointer"
-        >
-          Todos
-        </button>
-        <button
-          data-filter="published"
-          class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-zinc-800 cursor-pointer"
-        >
-          Publicados
-        </button>
-        <button
-          data-filter="draft"
-          class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-zinc-800 cursor-pointer"
-        >
-          Rascunhos
-        </button>
+      <!-- Experience Cards List -->
+      <div id="experiencesListContainer" class="space-y-3">
+        <div class="py-12 text-center text-[#86868b]">
+          <svg class="animate-spin size-6 mx-auto mb-2 text-[#0071e3]" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Carregando histórico de experiências...
+        </div>
       </div>
     </div>
 
-    <!-- Posts Table / List Card -->
-    <div class="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-neutral-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="border-b border-neutral-200 dark:border-zinc-800 bg-neutral-50/50 dark:bg-zinc-800/30 text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
-              <th class="py-4 px-6">Post</th>
-              <th class="py-4 px-6">Data</th>
-              <th class="py-4 px-6">Tags & Techs</th>
-              <th class="py-4 px-6">Status</th>
-              <th class="py-4 px-6 text-right">Ações</th>
-            </tr>
-          </thead>
-          <tbody id="postsTableBody" class="divide-y divide-neutral-200 dark:divide-zinc-800 text-sm">
-            <tr>
-              <td colspan="5" class="py-12 text-center text-neutral-400">
-                <svg class="animate-spin size-6 mx-auto mb-2 text-mint-500" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Carregando posts do Supabase...
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- ========================================== -->
+    <!-- TAB 4: TECH STACK                          -->
+    <!-- ========================================== -->
+    <div id="panel-tech-stack" class="admin-tab-panel hidden space-y-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-neutral-200/70 dark:border-white/10">
+        <div>
+          <h2 class="text-xl font-bold text-[#1d1d1f] dark:text-white">Tech Stack & Habilidades</h2>
+          <p class="text-xs text-[#86868b]">Gerencie as linguagens, ferramentas e frameworks exibidos nas cápsulas interativas.</p>
+        </div>
+        <button
+          type="button"
+          id="openNewTechModalBtn"
+          class="px-4 py-2 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-bold text-xs shadow-sm shadow-[#0071e3]/20 active:scale-[0.98] transition-all cursor-pointer flex items-center gap-1.5"
+        >
+          <svg class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Nova Tecnologia
+        </button>
       </div>
+
+      <!-- Tech Stack Grid -->
+      <div id="techStackGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="col-span-full py-12 text-center text-[#86868b]">
+          <svg class="animate-spin size-6 mx-auto mb-2 text-[#0071e3]" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Carregando tecnologias...
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: SOBRE MIM                           -->
+    <!-- ========================================== -->
+    <div id="panel-about" class="admin-tab-panel hidden space-y-6">
+      <form id="aboutForm" class="space-y-6">
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-200/70 dark:border-white/10">
+          <div>
+            <h2 class="text-xl font-bold text-[#1d1d1f] dark:text-white">Página Sobre Mim (/about-me)</h2>
+            <p class="text-xs text-[#86868b]">Edite a biografia longa, headline em destaque, hobbies e conteúdo Markdown.</p>
+          </div>
+          <button
+            type="submit"
+            id="saveAboutBtn"
+            class="px-5 py-2.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-bold text-xs shadow-sm shadow-[#0071e3]/20 active:scale-[0.98] transition-all cursor-pointer flex items-center gap-2"
+          >
+            <span>Salvar Sobre Mim</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="space-y-4">
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] space-y-4">
+              <h3 class="text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] uppercase tracking-wider">Meta & Headline</h3>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Título da Página (SEO)</label>
+                <input
+                  type="text"
+                  id="aboutTitleInput"
+                  name="about_title"
+                  class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Descrição SEO</label>
+                <textarea
+                  id="aboutDescriptionInput"
+                  name="about_description"
+                  rows="2"
+                  class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                ></textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Headline em Destaque</label>
+                <textarea
+                  id="aboutHeadlineInput"
+                  name="headline"
+                  rows="3"
+                  class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                ></textarea>
+                <p class="text-[11px] text-[#86868b] mt-1">Texto em destaque logo abaixo da foto na página /about-me.</p>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Hobbies & Interesses</label>
+                <div id="hobbiesContainer" class="flex flex-wrap gap-1.5 mb-2"></div>
+                <div class="flex gap-2">
+                  <input
+                    type="text"
+                    id="newHobbyInput"
+                    placeholder="Adicionar hobby..."
+                    class="flex-1 px-3 py-1.5 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+                  />
+                  <button
+                    type="button"
+                    id="addHobbyBtn"
+                    class="px-3 py-1.5 rounded-xl bg-neutral-200 dark:bg-zinc-700 text-xs font-bold text-[#1d1d1f] dark:text-white hover:bg-neutral-300 dark:hover:bg-zinc-600 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Editor Markdown com Live Preview -->
+          <div class="lg:col-span-2 space-y-4">
+            <div class="p-6 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] space-y-3">
+              <div class="flex items-center justify-between pb-2 border-b border-neutral-200/70 dark:border-white/10">
+                <!-- Apple Segmented Control for Editor/Preview in About -->
+                <div class="p-1 bg-neutral-100 dark:bg-zinc-800/80 rounded-xl flex items-center gap-1">
+                  <button
+                    type="button"
+                    id="aboutTabEditorBtn"
+                    class="px-3.5 py-1 rounded-lg text-xs font-bold bg-white dark:bg-zinc-700 text-[#1d1d1f] dark:text-white shadow-xs cursor-pointer transition-all"
+                  >
+                    Editor Markdown
+                  </button>
+                  <button
+                    type="button"
+                    id="aboutTabPreviewBtn"
+                    class="px-3.5 py-1 rounded-lg text-xs font-semibold text-[#86868b] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white cursor-pointer transition-all"
+                  >
+                    Pré-visualização
+                  </button>
+                </div>
+
+                <!-- Toolbar -->
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <button type="button" data-cmd="bold" class="about-tool-btn px-2.5 py-1 rounded-lg text-xs font-bold hover:bg-neutral-200 dark:hover:bg-zinc-700 text-[#1d1d1f] dark:text-white transition-colors" title="Negrito">B</button>
+                  <button type="button" data-cmd="italic" class="about-tool-btn px-2.5 py-1 rounded-lg text-xs italic font-serif hover:bg-neutral-200 dark:hover:bg-zinc-700 text-[#1d1d1f] dark:text-white transition-colors" title="Itálico">I</button>
+                  <button type="button" data-cmd="h2" class="about-tool-btn px-2.5 py-1 rounded-lg text-xs font-bold hover:bg-neutral-200 dark:hover:bg-zinc-700 text-[#1d1d1f] dark:text-white transition-colors" title="Título H2">H2</button>
+                  <button type="button" data-cmd="h3" class="about-tool-btn px-2.5 py-1 rounded-lg text-xs font-bold hover:bg-neutral-200 dark:hover:bg-zinc-700 text-[#1d1d1f] dark:text-white transition-colors" title="Título H3">H3</button>
+                  <button type="button" data-cmd="quote" class="about-tool-btn px-2.5 py-1 rounded-lg text-xs hover:bg-neutral-200 dark:hover:bg-zinc-700 text-[#1d1d1f] dark:text-white transition-colors" title="Citação">”</button>
+                  <span class="w-px h-3.5 bg-neutral-300 dark:bg-zinc-700 mx-1"></span>
+                  <button type="button" data-cmd="image" class="about-tool-btn px-2.5 py-1 rounded-lg text-xs font-semibold hover:bg-neutral-200 dark:hover:bg-zinc-700 text-[#0071e3] transition-colors" title="Inserir GIF ou Imagem">🖼️ GIF/Img</button>
+                  <button type="button" data-cmd="youtube" class="about-tool-btn px-2.5 py-1 rounded-lg text-xs font-semibold hover:bg-neutral-200 dark:hover:bg-zinc-700 text-rose-500 transition-colors" title="Inserir Vídeo do YouTube">🎬 YouTube</button>
+                </div>
+              </div>
+
+              <div id="aboutEditorContainer">
+                <textarea
+                  id="aboutContentInput"
+                  name="about_content"
+                  rows="18"
+                  placeholder="Escreva a biografia completa em Markdown..."
+                  class="w-full font-mono text-xs leading-relaxed px-4 py-3 rounded-2xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-[#1d1d1f] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3] transition-all resize-y"
+                ></textarea>
+              </div>
+
+              <div id="aboutPreviewContainer" class="hidden min-h-[350px] p-4 rounded-2xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 overflow-y-auto">
+                <div id="aboutPreviewOutput" class="markdown text-xs text-[#1d1d1f] dark:text-neutral-200 leading-relaxed space-y-3">
+                  <!-- Rendered markdown preview -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL: EXPERIÊNCIA (CRIAR / EDITAR)        -->
+    <!-- ========================================== -->
+    <div id="expModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+      <div class="w-full max-w-lg rounded-3xl bg-white dark:bg-[#1c1c1e] border border-neutral-200/80 dark:border-white/10 p-6 shadow-2xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-neutral-200/70 dark:border-white/10">
+          <h3 id="expModalTitle" class="text-base font-extrabold text-[#1d1d1f] dark:text-white">Nova Experiência</h3>
+          <button type="button" id="closeExpModalBtn" class="text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white font-bold text-lg cursor-pointer">&times;</button>
+        </div>
+
+        <form id="expForm" class="space-y-4">
+          <input type="hidden" id="expIdInput" />
+
+          <div>
+            <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Cargo / Título</label>
+            <input
+              type="text"
+              id="expTitleInput"
+              required
+              placeholder="ex: Profissional de Dados em BI"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3]"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Empresa / Instituição</label>
+              <input
+                type="text"
+                id="expCompanyInput"
+                required
+                placeholder="ex: FESFSUS / IFBA"
+                class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Período</label>
+              <input
+                type="text"
+                id="expPeriodInput"
+                required
+                placeholder="ex: 2026 - Presente"
+                class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Ordem na Timeline (Maior = mais recente)</label>
+            <input
+              type="number"
+              id="expOrderInput"
+              required
+              value="1"
+              class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Descrição das Atividades</label>
+            <textarea
+              id="expDescriptionInput"
+              required
+              rows="4"
+              placeholder="Descreva as responsabilidades, projetos e tecnologias utilizadas..."
+              class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3]"
+            ></textarea>
+          </div>
+
+          <div class="flex items-center justify-end gap-2.5 pt-2">
+            <button
+              type="button"
+              id="cancelExpModalBtn"
+              class="px-4 py-2 rounded-full border border-neutral-300 dark:border-white/15 text-xs font-semibold text-[#1d1d1f] dark:text-white hover:bg-neutral-100 dark:hover:bg-white/5"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-5 py-2 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-bold shadow-sm shadow-[#0071e3]/20 active:scale-[0.98]"
+            >
+              Salvar Experiência
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL: TECNOLOGIA (CRIAR / EDITAR)         -->
+    <!-- ========================================== -->
+    <div id="techModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+      <div class="w-full max-w-md rounded-3xl bg-white dark:bg-[#1c1c1e] border border-neutral-200/80 dark:border-white/10 p-6 shadow-2xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-neutral-200/70 dark:border-white/10">
+          <h3 id="techModalTitle" class="text-base font-extrabold text-[#1d1d1f] dark:text-white">Nova Tecnologia</h3>
+          <button type="button" id="closeTechModalBtn" class="text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white font-bold text-lg cursor-pointer">&times;</button>
+        </div>
+
+        <form id="techForm" class="space-y-4">
+          <input type="hidden" id="techIdInput" />
+
+          <div>
+            <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Nome Exibido</label>
+            <input
+              type="text"
+              id="techNameInput"
+              required
+              placeholder="ex: Power BI / Python"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white focus:ring-2 focus:ring-[#0071e3]/20 focus:border-[#0071e3]"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Chave / Ícone</label>
+              <input
+                type="text"
+                id="techKeyInput"
+                required
+                placeholder="ex: python / power"
+                class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Ordem</label>
+              <input
+                type="number"
+                id="techOrderInput"
+                required
+                value="1"
+                class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea] mb-1">Categoria</label>
+            <input
+              type="text"
+              id="techCategoryInput"
+              placeholder="ex: Data & BI, Banco de Dados, Linguagens"
+              class="w-full px-3 py-2 rounded-xl bg-neutral-50 dark:bg-zinc-900/60 border border-neutral-200/80 dark:border-white/10 text-xs text-[#1d1d1f] dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label class="flex items-center gap-2 cursor-pointer mt-1">
+              <input type="checkbox" id="techFeaturedInput" checked class="rounded text-[#0071e3] focus:ring-[#0071e3] size-4" />
+              <span class="text-xs font-semibold text-[#1d1d1f] dark:text-[#e5e5ea]">Exibir em destaque na Home</span>
+            </label>
+          </div>
+
+          <div class="flex items-center justify-end gap-2.5 pt-2">
+            <button
+              type="button"
+              id="cancelTechModalBtn"
+              class="px-4 py-2 rounded-full border border-neutral-300 dark:border-white/15 text-xs font-semibold text-[#1d1d1f] dark:text-white hover:bg-neutral-100 dark:hover:bg-white/5"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-5 py-2 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-bold shadow-sm shadow-[#0071e3]/20 active:scale-[0.98]"
+            >
+              Salvar Tecnologia
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Apple Dynamic Island Floating Toast Notification -->
+    <div
+      id="toastMessage"
+      class="hidden fixed bottom-6 right-6 z-50 px-5 py-3 rounded-full bg-neutral-900/95 dark:bg-white/95 text-white dark:text-neutral-900 backdrop-blur-2xl border border-white/10 dark:border-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.25)] flex items-center gap-2.5 transition-all text-xs font-semibold"
+    >
+      <span id="toastIcon">✓</span>
+      <span id="toastText">Operação realizada com sucesso!</span>
     </div>
   </div>
 </Layout>
 
 <script>
-  import { supabase, type Post } from "../../lib/supabase";
+  import { supabase, type Post, type Profile, type Experience, type TechStackItem } from "../../lib/supabase";
+  import { marked } from "marked";
 
+  // State
   let allPosts: Post[] = [];
+  let allExperiences: Experience[] = [];
+  let allTechStack: TechStackItem[] = [];
+  let currentProfile: Profile | null = null;
+  let currentHobbies: string[] = [];
   let currentFilter = "all";
   let searchQuery = "";
 
+  // Elements: Header & Auth
   const userEmailBadge = document.getElementById("userEmailBadge") as HTMLElement;
   const logoutBtn = document.getElementById("logoutBtn") as HTMLButtonElement;
+  const toastMessage = document.getElementById("toastMessage") as HTMLElement;
+  const toastText = document.getElementById("toastText") as HTMLElement;
+
+  // Elements: Tab Navigation
+  const navTabs = document.querySelectorAll(".admin-nav-tab");
+  const tabPanels = document.querySelectorAll(".admin-tab-panel");
+  const tabCountPosts = document.getElementById("tabCountPosts") as HTMLElement;
+  const tabCountExperiences = document.getElementById("tabCountExperiences") as HTMLElement;
+  const tabCountTech = document.getElementById("tabCountTech") as HTMLElement;
+
+  // Elements: Posts Tab
   const postsTableBody = document.getElementById("postsTableBody") as HTMLTableSectionElement;
   const searchInput = document.getElementById("searchInput") as HTMLInputElement;
   const filterBtns = document.querySelectorAll(".filter-btn");
-
   const kpiTotal = document.getElementById("kpiTotal") as HTMLElement;
   const kpiPublished = document.getElementById("kpiPublished") as HTMLElement;
   const kpiDrafts = document.getElementById("kpiDrafts") as HTMLElement;
   const kpiProjects = document.getElementById("kpiProjects") as HTMLElement;
 
-  // Check Auth Session
+  // Elements: Profile Tab
+  const profileForm = document.getElementById("profileForm") as HTMLFormElement;
+  const profileImageLightPreview = document.getElementById("profileImageLightPreview") as HTMLImageElement;
+  const profileImageLightUrlInput = document.getElementById("profileImageLightUrlInput") as HTMLInputElement;
+  const profileImageLightFileInput = document.getElementById("profileImageLightFileInput") as HTMLInputElement;
+  const profileLightUploadStatus = document.getElementById("profileLightUploadStatus") as HTMLElement;
+
+  const profileImageDarkPreview = document.getElementById("profileImageDarkPreview") as HTMLImageElement;
+  const profileImageDarkUrlInput = document.getElementById("profileImageDarkUrlInput") as HTMLInputElement;
+  const profileImageDarkFileInput = document.getElementById("profileImageDarkFileInput") as HTMLInputElement;
+  const profileDarkUploadStatus = document.getElementById("profileDarkUploadStatus") as HTMLElement;
+  const portfolioImagePreview = document.getElementById("portfolioImagePreview") as HTMLImageElement;
+  const portfolioImageUrlInput = document.getElementById("portfolioImageUrlInput") as HTMLInputElement;
+  const portfolioImageFileInput = document.getElementById("portfolioImageFileInput") as HTMLInputElement;
+  const profileNameInput = document.getElementById("profileNameInput") as HTMLInputElement;
+  const profileTitleInput = document.getElementById("profileTitleInput") as HTMLInputElement;
+  const profileAvailableInput = document.getElementById("profileAvailableInput") as HTMLInputElement;
+  const profileBioSummaryInput = document.getElementById("profileBioSummaryInput") as HTMLTextAreaElement;
+  const profileGithubInput = document.getElementById("profileGithubInput") as HTMLInputElement;
+  const profileLinkedinInput = document.getElementById("profileLinkedinInput") as HTMLInputElement;
+  const profileInstagramInput = document.getElementById("profileInstagramInput") as HTMLInputElement;
+  const profileYoutubeInput = document.getElementById("profileYoutubeInput") as HTMLInputElement;
+  const profileMediumInput = document.getElementById("profileMediumInput") as HTMLInputElement;
+  const profileEmailInput = document.getElementById("profileEmailInput") as HTMLInputElement;
+  const profileAliasInput = document.getElementById("profileAliasInput") as HTMLInputElement;
+  const profileContactTitleInput = document.getElementById("profileContactTitleInput") as HTMLInputElement;
+  const profileContactSubtitleInput = document.getElementById("profileContactSubtitleInput") as HTMLInputElement;
+  const profileContactBtnTextInput = document.getElementById("profileContactBtnTextInput") as HTMLInputElement;
+
+  // Elements: Experiences Tab & Modal
+  const experiencesListContainer = document.getElementById("experiencesListContainer") as HTMLElement;
+  const expModal = document.getElementById("expModal") as HTMLElement;
+  const expForm = document.getElementById("expForm") as HTMLFormElement;
+  const expModalTitle = document.getElementById("expModalTitle") as HTMLElement;
+  const expIdInput = document.getElementById("expIdInput") as HTMLInputElement;
+  const expTitleInput = document.getElementById("expTitleInput") as HTMLInputElement;
+  const expCompanyInput = document.getElementById("expCompanyInput") as HTMLInputElement;
+  const expPeriodInput = document.getElementById("expPeriodInput") as HTMLInputElement;
+  const expOrderInput = document.getElementById("expOrderInput") as HTMLInputElement;
+  const expDescriptionInput = document.getElementById("expDescriptionInput") as HTMLTextAreaElement;
+  const openNewExpModalBtn = document.getElementById("openNewExpModalBtn") as HTMLButtonElement;
+  const closeExpModalBtn = document.getElementById("closeExpModalBtn") as HTMLButtonElement;
+  const cancelExpModalBtn = document.getElementById("cancelExpModalBtn") as HTMLButtonElement;
+
+  // Elements: Tech Stack Tab & Modal
+  const techStackGrid = document.getElementById("techStackGrid") as HTMLElement;
+  const techModal = document.getElementById("techModal") as HTMLElement;
+  const techForm = document.getElementById("techForm") as HTMLFormElement;
+  const techModalTitle = document.getElementById("techModalTitle") as HTMLElement;
+  const techIdInput = document.getElementById("techIdInput") as HTMLInputElement;
+  const techNameInput = document.getElementById("techNameInput") as HTMLInputElement;
+  const techKeyInput = document.getElementById("techKeyInput") as HTMLInputElement;
+  const techCategoryInput = document.getElementById("techCategoryInput") as HTMLInputElement;
+  const techOrderInput = document.getElementById("techOrderInput") as HTMLInputElement;
+  const techFeaturedInput = document.getElementById("techFeaturedInput") as HTMLInputElement;
+  const openNewTechModalBtn = document.getElementById("openNewTechModalBtn") as HTMLButtonElement;
+  const closeTechModalBtn = document.getElementById("closeTechModalBtn") as HTMLButtonElement;
+  const cancelTechModalBtn = document.getElementById("cancelTechModalBtn") as HTMLButtonElement;
+
+  // Elements: About Tab
+  const aboutForm = document.getElementById("aboutForm") as HTMLFormElement;
+  const aboutTitleInput = document.getElementById("aboutTitleInput") as HTMLInputElement;
+  const aboutDescriptionInput = document.getElementById("aboutDescriptionInput") as HTMLTextAreaElement;
+  const aboutHeadlineInput = document.getElementById("aboutHeadlineInput") as HTMLTextAreaElement;
+  const aboutContentInput = document.getElementById("aboutContentInput") as HTMLTextAreaElement;
+  const hobbiesContainer = document.getElementById("hobbiesContainer") as HTMLElement;
+  const newHobbyInput = document.getElementById("newHobbyInput") as HTMLInputElement;
+  const addHobbyBtn = document.getElementById("addHobbyBtn") as HTMLButtonElement;
+  const aboutTabEditorBtn = document.getElementById("aboutTabEditorBtn") as HTMLButtonElement;
+  const aboutTabPreviewBtn = document.getElementById("aboutTabPreviewBtn") as HTMLButtonElement;
+  const aboutEditorContainer = document.getElementById("aboutEditorContainer") as HTMLElement;
+  const aboutPreviewContainer = document.getElementById("aboutPreviewContainer") as HTMLElement;
+  const aboutPreviewOutput = document.getElementById("aboutPreviewOutput") as HTMLElement;
+
+  // Helper: Toast (Apple Dynamic Island style)
+  function showToast(msg: string, isError = false) {
+    if (!toastMessage || !toastText) return;
+    toastText.textContent = msg;
+    const toastIcon = document.getElementById("toastIcon");
+    if (toastIcon) toastIcon.textContent = isError ? "⚠️" : "✓";
+    toastMessage.className = `fixed bottom-6 right-6 z-50 px-5 py-3 rounded-full backdrop-blur-2xl border shadow-xl flex items-center gap-2.5 transition-all text-xs font-semibold ${
+      isError
+        ? "bg-rose-500/90 text-white border-rose-400/30 shadow-rose-500/25"
+        : "bg-neutral-900/95 dark:bg-white/95 text-white dark:text-neutral-900 border-white/10 dark:border-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+    }`;
+    toastMessage.classList.remove("hidden");
+    setTimeout(() => toastMessage.classList.add("hidden"), 3500);
+  }
+
+  // Auth Initialization
   async function initAuth() {
     const { data } = await supabase.auth.getSession();
     if (!data.session) {
@@ -193,7 +1030,12 @@ const pageTitle = "Painel Administrativo | Bernardo SaaS Studio";
     }
     const email = data.session.user.email || "Administrador";
     userEmailBadge.textContent = `Autenticado: ${email}`;
+
+    // Load all data
     loadPosts();
+    loadProfile();
+    loadExperiences();
+    loadTechStack();
   }
 
   logoutBtn.addEventListener("click", async () => {
@@ -201,6 +1043,42 @@ const pageTitle = "Painel Administrativo | Bernardo SaaS Studio";
     window.location.href = "/admin/login";
   });
 
+  // Tab Switching (Apple style pill transition)
+  function switchTab(tabName: string) {
+    navTabs.forEach((tab) => {
+      const active = tab.getAttribute("data-tab") === tabName;
+      if (active) {
+        tab.className = "admin-nav-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap bg-white dark:bg-zinc-700 text-[#1d1d1f] dark:text-white shadow-xs";
+      } else {
+        tab.className = "admin-nav-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap text-[#86868b] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white";
+      }
+    });
+
+    tabPanels.forEach((panel) => {
+      panel.classList.add("hidden");
+    });
+    const activePanel = document.getElementById(`panel-${tabName}`);
+    if (activePanel) activePanel.classList.remove("hidden");
+
+    window.location.hash = tabName;
+  }
+
+  navTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const t = tab.getAttribute("data-tab");
+      if (t) switchTab(t);
+    });
+  });
+
+  // Check URL Hash on load
+  const initialHash = window.location.hash.replace("#", "");
+  if (["posts", "profile", "experiences", "tech-stack", "about"].includes(initialHash)) {
+    switchTab(initialHash);
+  }
+
+  // ==========================================
+  // TAB 1: POSTS LOGIC
+  // ==========================================
   async function loadPosts() {
     try {
       const { data, error } = await supabase
@@ -210,17 +1088,12 @@ const pageTitle = "Painel Administrativo | Bernardo SaaS Studio";
 
       if (error) throw error;
       allPosts = data || [];
+      tabCountPosts.textContent = String(allPosts.length);
       updateKPIs();
-      renderTable();
+      renderPostsTable();
     } catch (err: any) {
       console.error(err);
-      postsTableBody.innerHTML = `
-        <tr>
-          <td colspan="5" class="py-8 text-center text-rose-500 font-medium">
-            Erro ao carregar posts: ${err.message}
-          </td>
-        </tr>
-      `;
+      postsTableBody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-rose-500">Erro: ${err.message}</td></tr>`;
     }
   }
 
@@ -231,175 +1104,109 @@ const pageTitle = "Painel Administrativo | Bernardo SaaS Studio";
     kpiProjects.textContent = String(allPosts.filter((p) => p.project).length);
   }
 
-  function renderTable() {
+  function renderPostsTable() {
     const filtered = allPosts.filter((post) => {
       const matchesSearch =
         searchQuery === "" ||
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.slug.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (post.tags && post.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase())));
-
-      const matchesStatus =
-        currentFilter === "all" || post.status === currentFilter;
-
+      const matchesStatus = currentFilter === "all" || post.status === currentFilter;
       return matchesSearch && matchesStatus;
     });
 
     if (filtered.length === 0) {
-      postsTableBody.innerHTML = `
-        <tr>
-          <td colspan="5" class="py-12 text-center text-neutral-400">
-            Nenhum post encontrado com os filtros atuais.
-          </td>
-        </tr>
-      `;
+      postsTableBody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-[#86868b]">Nenhum post encontrado.</td></tr>`;
       return;
     }
 
-    postsTableBody.innerHTML = filtered
-      .map((post) => {
-        const isPublished = post.status === "published";
-        const tagsBadges = (post.tags || [])
-          .slice(0, 3)
-          .map(
-            (t) =>
-              `<span class="inline-block px-2 py-0.5 text-xs rounded-md bg-neutral-100 dark:bg-zinc-800 text-neutral-600 dark:text-neutral-300 font-medium mr-1 mb-1">${t}</span>`
-          )
-          .join("");
+    postsTableBody.innerHTML = filtered.map((post) => {
+      const isPublished = post.status === "published";
+      const imageThumbnail = post.image_url
+        ? `<img src="${post.image_url}" alt="" class="size-10 rounded-xl object-cover bg-neutral-200 dark:bg-zinc-800 shrink-0" />`
+        : `<div class="size-10 rounded-xl bg-neutral-100 dark:bg-zinc-800 flex items-center justify-center text-[#86868b] shrink-0 font-bold text-xs">P</div>`;
 
-        const langBadges = (post.languages || [])
-          .slice(0, 2)
-          .map(
-            (l) =>
-              `<span class="inline-block px-1.5 py-0.5 text-[10px] rounded bg-mint-500/10 text-mint-600 dark:text-mint-300 font-mono mr-1">${l}</span>`
-          )
-          .join("");
-
-        const imageThumbnail = post.image_url
-          ? `<img src="${post.image_url}" alt="" class="size-10 rounded-lg object-cover bg-neutral-200 dark:bg-zinc-800 shrink-0" />`
-          : `<div class="size-10 rounded-lg bg-neutral-100 dark:bg-zinc-800 flex items-center justify-center text-neutral-400 shrink-0 font-bold text-xs">P</div>`;
-
-        return `
-          <tr class="hover:bg-neutral-50/50 dark:hover:bg-zinc-800/40 transition-colors">
-            <td class="py-4 px-6">
-              <div class="flex items-center gap-3">
-                ${imageThumbnail}
-                <div class="min-w-0">
-                  <a href="/admin/posts/edit?id=${post.id}" class="font-semibold text-neutral-900 dark:text-white hover:text-mint-500 dark:hover:text-mint-400 transition-colors block truncate max-w-sm">
-                    ${post.title}
-                  </a>
-                  <span class="text-xs text-neutral-400 font-mono block truncate">
-                    /blog/posts/${post.slug}
-                  </span>
-                  ${post.project ? '<span class="inline-block text-[10px] font-bold text-amber-500 uppercase tracking-wider mt-0.5">⭐ Projeto</span>' : ''}
-                </div>
+      return `
+        <tr class="hover:bg-neutral-50/50 dark:hover:bg-white/5 transition-colors">
+          <td class="py-4 px-6">
+            <div class="flex items-center gap-3">
+              ${imageThumbnail}
+              <div class="min-w-0">
+                <a href="/admin/posts/edit?id=${post.id}" class="font-bold text-[#1d1d1f] dark:text-white hover:text-[#0071e3] transition-colors block truncate max-w-sm">
+                  ${post.title}
+                </a>
+                <span class="text-[11px] text-[#86868b] font-mono block truncate">/blog/posts/${post.slug}</span>
+                ${post.project ? '<span class="inline-block text-[10px] font-bold text-amber-500 uppercase tracking-wider mt-0.5">⭐ Projeto</span>' : ''}
               </div>
-            </td>
-            <td class="py-4 px-6 whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-400">
-              ${post.pub_date || "-"}
-            </td>
-            <td class="py-4 px-6">
-              <div class="flex flex-wrap max-w-xs">
-                ${tagsBadges}
-                ${langBadges}
-              </div>
-            </td>
-            <td class="py-4 px-6 whitespace-nowrap">
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${
-                isPublished
-                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
-                  : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
-              }">
-                <span class="size-1.5 rounded-full ${isPublished ? "bg-emerald-500" : "bg-amber-500"}"></span>
-                ${isPublished ? "Publicado" : "Rascunho"}
-              </span>
-            </td>
-            <td class="py-4 px-6 whitespace-nowrap text-right text-xs font-medium space-x-2">
-              <a
-                href="/blog/posts/${post.slug}"
-                target="_blank"
-                title="Ver post"
-                class="inline-flex items-center justify-center size-8 rounded-lg text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-zinc-800 transition-all"
-              >
-                <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </a>
-              <a
-                href="/admin/posts/edit?id=${post.id}"
-                title="Editar post"
-                class="inline-flex items-center justify-center size-8 rounded-lg text-mint-500 hover:bg-mint-500/10 transition-all"
-              >
-                <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-              </a>
-              <button
-                data-id="${post.id}"
-                data-status="${post.status}"
-                class="toggle-status-btn inline-flex items-center justify-center size-8 rounded-lg text-amber-500 hover:bg-amber-500/10 transition-all cursor-pointer"
-                title="${isPublished ? 'Mudar para rascunho' : 'Publicar imediatamente'}"
-              >
-                <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                </svg>
-              </button>
-              <button
-                data-id="${post.id}"
-                data-title="${post.title.replace(/"/g, '&quot;')}"
-                class="delete-post-btn inline-flex items-center justify-center size-8 rounded-lg text-rose-500 hover:bg-rose-500/10 transition-all cursor-pointer"
-                title="Excluir post"
-              >
-                <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-        `;
-      })
-      .join("");
+            </div>
+          </td>
+          <td class="py-4 px-6 whitespace-nowrap text-xs text-[#86868b]">${post.pub_date || "-"}</td>
+          <td class="py-4 px-6">
+            <div class="flex flex-wrap max-w-xs gap-1">
+              ${(post.tags || []).slice(0, 2).map((t) => `<span class="px-2.5 py-0.5 text-[11px] rounded-full bg-neutral-100 dark:bg-zinc-800 text-neutral-600 dark:text-neutral-300 font-medium">${t}</span>`).join("")}
+            </div>
+          </td>
+          <td class="py-4 px-6 whitespace-nowrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold ${
+              isPublished
+                ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
+                : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+            }">
+              <span class="size-1.5 rounded-full ${isPublished ? "bg-emerald-500" : "bg-amber-500"}"></span>
+              ${isPublished ? "Publicado" : "Rascunho"}
+            </span>
+          </td>
+          <td class="py-4 px-6 whitespace-nowrap text-right text-xs font-medium space-x-2">
+            <a href="/blog/posts/${post.slug}" target="_blank" class="inline-flex items-center justify-center size-8 rounded-full text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-zinc-800 transition-all" title="Ver post">
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+            </a>
+            <a href="/admin/posts/edit?id=${post.id}" class="inline-flex items-center justify-center size-8 rounded-full text-[#0071e3] hover:bg-[#0071e3]/10 transition-all" title="Editar">
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+            </a>
+            <button data-id="${post.id}" data-status="${post.status}" class="toggle-status-btn inline-flex items-center justify-center size-8 rounded-full text-amber-500 hover:bg-amber-500/10 cursor-pointer transition-all" title="${isPublished ? 'Mudar para rascunho' : 'Publicar'}">
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+            </button>
+            <button data-id="${post.id}" data-title="${post.title.replace(/"/g, '&quot;')}" class="delete-post-btn inline-flex items-center justify-center size-8 rounded-full text-rose-500 hover:bg-rose-500/10 cursor-pointer transition-all" title="Excluir">
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join("");
 
-    attachEventListeners();
+    attachPostEventListeners();
   }
 
-  function attachEventListeners() {
-    // Toggle Status Button
+  function attachPostEventListeners() {
     document.querySelectorAll(".toggle-status-btn").forEach((btn) => {
       btn.addEventListener("click", async (e) => {
         const target = e.currentTarget as HTMLButtonElement;
         const id = target.getAttribute("data-id");
-        const currentStatus = target.getAttribute("data-status");
+        const status = target.getAttribute("data-status");
         if (!id) return;
-
-        const newStatus = currentStatus === "published" ? "draft" : "published";
-        const { error } = await supabase
-          .from("posts")
-          .update({ status: newStatus, updated_at: new Date().toISOString() })
-          .eq("id", id);
-
+        const newStatus = status === "published" ? "draft" : "published";
+        const { error } = await supabase.from("posts").update({ status: newStatus, updated_at: new Date().toISOString() }).eq("id", id);
         if (error) {
-          alert(`Erro ao atualizar status: ${error.message}`);
+          showToast(`Erro: ${error.message}`, true);
         } else {
+          showToast(`Post alterado para ${newStatus === "published" ? "Publicado" : "Rascunho"}!`);
           loadPosts();
         }
       });
     });
 
-    // Delete Button
     document.querySelectorAll(".delete-post-btn").forEach((btn) => {
       btn.addEventListener("click", async (e) => {
         const target = e.currentTarget as HTMLButtonElement;
         const id = target.getAttribute("data-id");
         const title = target.getAttribute("data-title");
         if (!id) return;
-
-        if (confirm(`Tem certeza que deseja excluir o post:\n"${title}"?`)) {
+        if (confirm(`Excluir o post:\n"${title}"?`)) {
           const { error } = await supabase.from("posts").delete().eq("id", id);
           if (error) {
-            alert(`Erro ao excluir post: ${error.message}`);
+            showToast(`Erro: ${error.message}`, true);
           } else {
+            showToast("Post excluído com sucesso!");
             loadPosts();
           }
         }
@@ -407,23 +1214,603 @@ const pageTitle = "Painel Administrativo | Bernardo SaaS Studio";
     });
   }
 
-  // Search input handler
   searchInput.addEventListener("input", (e) => {
     searchQuery = (e.target as HTMLInputElement).value.trim();
-    renderTable();
+    renderPostsTable();
   });
 
-  // Filter buttons handler
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const target = e.currentTarget as HTMLButtonElement;
       filterBtns.forEach((b) => {
-        b.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-zinc-800 cursor-pointer";
+        b.className = "filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#86868b] dark:text-[#a1a1a6] hover:bg-neutral-100 dark:hover:bg-white/5 cursor-pointer transition-all";
       });
-      target.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 cursor-pointer";
+      target.className = "filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1d1d1f] text-white dark:bg-white dark:text-[#1d1d1f] shadow-xs cursor-pointer transition-all";
       currentFilter = target.getAttribute("data-filter") || "all";
-      renderTable();
+      renderPostsTable();
     });
+  });
+
+  // ==========================================
+  // TAB 2: PROFILE LOGIC
+  // ==========================================
+  async function loadProfile() {
+    try {
+      const { data, error } = await supabase.from("profile").select("*").eq("id", "main").maybeSingle();
+      if (error) throw error;
+      if (!data) return;
+
+      currentProfile = data;
+      // Populate Profile Tab
+      profileNameInput.value = data.profile_name || "";
+      profileTitleInput.value = data.profile_title || "";
+      profileAvailableInput.checked = !!data.available_for_work;
+      profileBioSummaryInput.value = data.bio_summary || "";
+      let lightImg = "/profile-light.png";
+      let darkImg = "/profile-dark.png";
+
+      if (data.profile_image && typeof data.profile_image === "string" && data.profile_image.trim().startsWith("{")) {
+        try {
+          const parsed = JSON.parse(data.profile_image);
+          if (parsed.light) lightImg = parsed.light;
+          if (parsed.dark) darkImg = parsed.dark;
+        } catch (e) {}
+      } else {
+        if (data.profile_image_light) lightImg = data.profile_image_light;
+        else if (data.profile_image) lightImg = data.profile_image;
+
+        if (data.profile_image_dark) darkImg = data.profile_image_dark;
+        else if (data.profile_image) darkImg = data.profile_image;
+      }
+
+      profileImageLightUrlInput.value = lightImg;
+      profileImageLightPreview.src = lightImg;
+      profileImageDarkUrlInput.value = darkImg;
+      profileImageDarkPreview.src = darkImg;
+      portfolioImageUrlInput.value = data.portfolio_image || "/portfolio.png";
+      portfolioImagePreview.src = data.portfolio_image || "/portfolio.png";
+
+      profileGithubInput.value = data.github_url || "";
+      profileLinkedinInput.value = data.linkedin_url || "";
+      profileInstagramInput.value = data.instagram_url || "";
+      profileYoutubeInput.value = data.youtube_url || "";
+      profileMediumInput.value = data.medium_url || "";
+      profileEmailInput.value = data.email || "";
+      profileAliasInput.value = data.alias || "";
+
+      profileContactTitleInput.value = data.contact_title || "";
+      profileContactSubtitleInput.value = data.contact_subtitle || "";
+      profileContactBtnTextInput.value = data.contact_button_text || "";
+
+      // Populate About Tab
+      aboutTitleInput.value = data.about_title || "";
+      aboutDescriptionInput.value = data.about_description || "";
+      aboutHeadlineInput.value = data.headline || "";
+      aboutContentInput.value = data.about_content || "";
+      currentHobbies = Array.isArray(data.hobbies) ? data.hobbies : [];
+      renderHobbies();
+    } catch (err: any) {
+      console.error("Erro ao carregar perfil:", err);
+    }
+  }
+
+  // File Upload Helper to Supabase Storage
+  async function uploadImageFile(file: File, folder = "profile"): Promise<string> {
+    const ext = file.name.split(".").pop();
+    const fileName = `${folder}-${Date.now()}-${Math.random().toString(36).substring(2, 7)}.${ext}`;
+    const filePath = `uploads/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage.from("blog-images").upload(filePath, file, {
+      cacheControl: "3600",
+      upsert: true,
+    });
+    if (uploadError) throw uploadError;
+
+    const { data: publicUrlData } = supabase.storage.from("blog-images").getPublicUrl(filePath);
+    return publicUrlData.publicUrl;
+  }
+
+  // Foto Claro Upload & Input
+  profileImageLightFileInput.addEventListener("change", async () => {
+    const file = profileImageLightFileInput.files?.[0];
+    if (!file) return;
+    profileLightUploadStatus.classList.remove("hidden");
+    profileLightUploadStatus.textContent = "Fazendo upload da foto clara...";
+    try {
+      const url = await uploadImageFile(file, "avatar-light");
+      profileImageLightUrlInput.value = url;
+      profileImageLightPreview.src = url;
+      profileLightUploadStatus.textContent = "Upload concluído!";
+      setTimeout(() => profileLightUploadStatus.classList.add("hidden"), 3000);
+      showToast("Foto (Tema Claro) enviada com sucesso!");
+    } catch (err: any) {
+      profileLightUploadStatus.textContent = `Erro: ${err.message}`;
+      showToast(`Erro no upload: ${err.message}`, true);
+    }
+  });
+
+  profileImageLightUrlInput.addEventListener("input", () => {
+    profileImageLightPreview.src = profileImageLightUrlInput.value || "/profile-light.png";
+  });
+
+  // Foto Escuro Upload & Input
+  profileImageDarkFileInput.addEventListener("change", async () => {
+    const file = profileImageDarkFileInput.files?.[0];
+    if (!file) return;
+    profileDarkUploadStatus.classList.remove("hidden");
+    profileDarkUploadStatus.textContent = "Fazendo upload da foto escura...";
+    try {
+      const url = await uploadImageFile(file, "avatar-dark");
+      profileImageDarkUrlInput.value = url;
+      profileImageDarkPreview.src = url;
+      profileDarkUploadStatus.textContent = "Upload concluído!";
+      setTimeout(() => profileDarkUploadStatus.classList.add("hidden"), 3000);
+      showToast("Foto (Tema Escuro) enviada com sucesso!");
+    } catch (err: any) {
+      profileDarkUploadStatus.textContent = `Erro: ${err.message}`;
+      showToast(`Erro no upload: ${err.message}`, true);
+    }
+  });
+
+  profileImageDarkUrlInput.addEventListener("input", () => {
+    profileImageDarkPreview.src = profileImageDarkUrlInput.value || "/profile-dark.png";
+  });
+
+  portfolioImageFileInput.addEventListener("change", async () => {
+    const file = portfolioImageFileInput.files?.[0];
+    if (!file) return;
+    try {
+      const url = await uploadImageFile(file, "portfolio");
+      portfolioImageUrlInput.value = url;
+      portfolioImagePreview.src = url;
+      showToast("Capa de portfólio enviada com sucesso!");
+    } catch (err: any) {
+      showToast(`Erro no upload: ${err.message}`, true);
+    }
+  });
+
+  portfolioImageUrlInput.addEventListener("input", () => {
+    portfolioImagePreview.src = portfolioImageUrlInput.value || "/portfolio.png";
+  });
+
+  profileForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const lightImg = profileImageLightUrlInput.value.trim() || "/profile-light.png";
+    const darkImg = profileImageDarkUrlInput.value.trim() || "/profile-dark.png";
+
+    // Encode both images into the existing profile_image column to avoid schema cache missing column error
+    const profileImageValue = JSON.stringify({ light: lightImg, dark: darkImg });
+
+    const updates = {
+      profile_name: profileNameInput.value.trim(),
+      profile_title: profileTitleInput.value.trim(),
+      available_for_work: profileAvailableInput.checked,
+      bio_summary: profileBioSummaryInput.value.trim(),
+      profile_image: profileImageValue,
+      portfolio_image: portfolioImageUrlInput.value.trim() || "/portfolio.png",
+      github_url: profileGithubInput.value.trim(),
+      linkedin_url: profileLinkedinInput.value.trim(),
+      instagram_url: profileInstagramInput.value.trim(),
+      youtube_url: profileYoutubeInput.value.trim(),
+      medium_url: profileMediumInput.value.trim(),
+      email: profileEmailInput.value.trim(),
+      alias: profileAliasInput.value.trim(),
+      contact_title: profileContactTitleInput.value.trim(),
+      contact_subtitle: profileContactSubtitleInput.value.trim(),
+      contact_button_text: profileContactBtnTextInput.value.trim(),
+      updated_at: new Date().toISOString(),
+    };
+
+    const { error } = await supabase.from("profile").upsert({ id: "main", ...updates });
+    if (error) {
+      showToast(`Erro ao salvar perfil: ${error.message}`, true);
+    } else {
+      showToast("Perfil e links atualizados com sucesso!");
+    }
+  });
+
+  // ==========================================
+  // TAB 3: EXPERIÊNCIAS LOGIC
+  // ==========================================
+  async function loadExperiences() {
+    try {
+      const { data, error } = await supabase.from("experiences").select("*").order("order_index", { ascending: false });
+      if (error) throw error;
+      allExperiences = data || [];
+      tabCountExperiences.textContent = String(allExperiences.length);
+      renderExperiences();
+    } catch (err: any) {
+      experiencesListContainer.innerHTML = `<div class="p-6 text-center text-rose-500">Erro: ${err.message}</div>`;
+    }
+  }
+
+  function renderExperiences() {
+    if (allExperiences.length === 0) {
+      experiencesListContainer.innerHTML = `<div class="p-8 text-center text-[#86868b] bg-white/50 dark:bg-zinc-900/50 rounded-3xl border border-neutral-200/80 dark:border-white/10">Nenhuma experiência cadastrada. Clique em "+ Nova Experiência".</div>`;
+      return;
+    }
+
+    experiencesListContainer.innerHTML = allExperiences.map((exp) => `
+      <div class="p-5 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-[#0071e3]/40 transition-colors">
+        <div class="space-y-1 min-w-0 flex-1">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-[#0071e3]/10 text-[#0071e3] text-[10px] font-mono font-bold">#${exp.order_index}</span>
+            <h3 class="font-extrabold text-[#1d1d1f] dark:text-white text-base">${exp.title}</h3>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 text-xs text-[#86868b] font-medium">
+            <span class="text-[#1d1d1f] dark:text-white font-semibold">${exp.company}</span>
+            <span>•</span>
+            <span>${exp.period}</span>
+          </div>
+          <p class="text-xs text-[#6e6e73] dark:text-[#a1a1a6] line-clamp-2 mt-1">${exp.description}</p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+          <button data-id="${exp.id}" class="edit-exp-btn px-3.5 py-1.5 rounded-full border border-neutral-300/80 dark:border-white/15 text-xs font-semibold text-[#1d1d1f] dark:text-white hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5">
+            <svg class="size-3.5 text-[#0071e3]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+            Editar
+          </button>
+          <button data-id="${exp.id}" data-title="${exp.title.replace(/"/g, '&quot;')}" class="delete-exp-btn px-3.5 py-1.5 rounded-full border border-rose-500/20 text-rose-500 hover:bg-rose-500/10 text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5">
+            <svg class="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            Excluir
+          </button>
+        </div>
+      </div>
+    `).join("");
+
+    attachExpEventListeners();
+  }
+
+  function attachExpEventListeners() {
+    document.querySelectorAll(".edit-exp-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-id");
+        const exp = allExperiences.find((e) => e.id === id);
+        if (!exp) return;
+        expIdInput.value = exp.id;
+        expTitleInput.value = exp.title;
+        expCompanyInput.value = exp.company;
+        expPeriodInput.value = exp.period;
+        expOrderInput.value = String(exp.order_index);
+        expDescriptionInput.value = exp.description;
+        expModalTitle.textContent = "Editar Experiência";
+        expModal.classList.remove("hidden");
+      });
+    });
+
+    document.querySelectorAll(".delete-exp-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = btn.getAttribute("data-id");
+        const title = btn.getAttribute("data-title");
+        if (!id) return;
+        if (confirm(`Excluir a experiência:\n"${title}"?`)) {
+          const { error } = await supabase.from("experiences").delete().eq("id", id);
+          if (error) {
+            showToast(`Erro: ${error.message}`, true);
+          } else {
+            showToast("Experiência excluída!");
+            loadExperiences();
+          }
+        }
+      });
+    });
+  }
+
+  openNewExpModalBtn.addEventListener("click", () => {
+    expForm.reset();
+    expIdInput.value = "";
+    expOrderInput.value = String(allExperiences.length + 1);
+    expModalTitle.textContent = "Nova Experiência";
+    expModal.classList.remove("hidden");
+  });
+
+  closeExpModalBtn.addEventListener("click", () => expModal.classList.add("hidden"));
+  cancelExpModalBtn.addEventListener("click", () => expModal.classList.add("hidden"));
+
+  expForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const id = expIdInput.value;
+    const expData = {
+      title: expTitleInput.value.trim(),
+      company: expCompanyInput.value.trim(),
+      period: expPeriodInput.value.trim(),
+      order_index: parseInt(expOrderInput.value, 10) || 1,
+      description: expDescriptionInput.value.trim(),
+      updated_at: new Date().toISOString(),
+    };
+
+    if (id) {
+      const { error } = await supabase.from("experiences").update(expData).eq("id", id);
+      if (error) {
+        showToast(`Erro: ${error.message}`, true);
+      } else {
+        showToast("Experiência atualizada com sucesso!");
+        expModal.classList.add("hidden");
+        loadExperiences();
+      }
+    } else {
+      const { error } = await supabase.from("experiences").insert([expData]);
+      if (error) {
+        showToast(`Erro: ${error.message}`, true);
+      } else {
+        showToast("Experiência criada com sucesso!");
+        expModal.classList.add("hidden");
+        loadExperiences();
+      }
+    }
+  });
+
+  // ==========================================
+  // TAB 4: TECH STACK LOGIC
+  // ==========================================
+  async function loadTechStack() {
+    try {
+      const { data, error } = await supabase.from("tech_stack").select("*").order("order_index", { ascending: true });
+      if (error) throw error;
+      allTechStack = data || [];
+      tabCountTech.textContent = String(allTechStack.length);
+      renderTechStack();
+    } catch (err: any) {
+      techStackGrid.innerHTML = `<div class="col-span-full p-6 text-center text-rose-500">Erro: ${err.message}</div>`;
+    }
+  }
+
+  function renderTechStack() {
+    if (allTechStack.length === 0) {
+      techStackGrid.innerHTML = `<div class="col-span-full p-8 text-center text-[#86868b] bg-white/50 dark:bg-zinc-900/50 rounded-3xl border border-neutral-200/80 dark:border-white/10">Nenhuma tecnologia cadastrada. Clique em "+ Nova Tecnologia".</div>`;
+      return;
+    }
+
+    techStackGrid.innerHTML = allTechStack.map((tech) => `
+      <div class="p-5 rounded-3xl bg-white/80 dark:bg-[#121215]/80 backdrop-blur-2xl border border-neutral-200/70 dark:border-white/10 shadow-[0_2px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] flex flex-col justify-between hover:border-[#0071e3]/40 transition-colors">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-neutral-100 dark:bg-zinc-800 text-[#86868b] text-[10px] font-mono font-bold">#${tech.order_index}</span>
+            ${tech.is_featured ? '<span class="text-[10px] px-2.5 py-0.5 rounded-full bg-[#0071e3]/10 text-[#0071e3] font-bold">Home</span>' : ''}
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="size-9 rounded-2xl bg-neutral-100 dark:bg-zinc-800 flex items-center justify-center font-bold text-xs text-[#0071e3]">
+              ${tech.key.slice(0, 3).toUpperCase()}
+            </div>
+            <div>
+              <h4 class="font-extrabold text-sm text-[#1d1d1f] dark:text-white">${tech.name}</h4>
+              <p class="text-[11px] text-[#86868b] font-mono">key: ${tech.key}</p>
+            </div>
+          </div>
+          <span class="inline-block mt-3 px-2.5 py-0.5 rounded-full text-[11px] bg-neutral-100 dark:bg-zinc-800 text-[#6e6e73] dark:text-[#a1a1a6] font-medium">
+            ${tech.category || "Geral"}
+          </span>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 mt-3 border-t border-neutral-100 dark:border-white/5">
+          <button data-id="${tech.id}" class="edit-tech-btn text-xs font-semibold text-[#0071e3] hover:underline cursor-pointer">Editar</button>
+          <span class="text-neutral-300 dark:text-zinc-700">•</span>
+          <button data-id="${tech.id}" data-name="${tech.name.replace(/"/g, '&quot;')}" class="delete-tech-btn text-xs font-semibold text-rose-500 hover:underline cursor-pointer">Excluir</button>
+        </div>
+      </div>
+    `).join("");
+
+    attachTechEventListeners();
+  }
+
+  function attachTechEventListeners() {
+    document.querySelectorAll(".edit-tech-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-id");
+        const tech = allTechStack.find((t) => t.id === id);
+        if (!tech) return;
+        techIdInput.value = tech.id;
+        techNameInput.value = tech.name;
+        techKeyInput.value = tech.key;
+        techCategoryInput.value = tech.category;
+        techOrderInput.value = String(tech.order_index);
+        techFeaturedInput.checked = tech.is_featured;
+        techModalTitle.textContent = "Editar Tecnologia";
+        techModal.classList.remove("hidden");
+      });
+    });
+
+    document.querySelectorAll(".delete-tech-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = btn.getAttribute("data-id");
+        const name = btn.getAttribute("data-name");
+        if (!id) return;
+        if (confirm(`Excluir a tecnologia "${name}"?`)) {
+          const { error } = await supabase.from("tech_stack").delete().eq("id", id);
+          if (error) {
+            showToast(`Erro: ${error.message}`, true);
+          } else {
+            showToast("Tecnologia excluída!");
+            loadTechStack();
+          }
+        }
+      });
+    });
+  }
+
+  openNewTechModalBtn.addEventListener("click", () => {
+    techForm.reset();
+    techIdInput.value = "";
+    techOrderInput.value = String(allTechStack.length + 1);
+    techFeaturedInput.checked = true;
+    techModalTitle.textContent = "Nova Tecnologia";
+    techModal.classList.remove("hidden");
+  });
+
+  closeTechModalBtn.addEventListener("click", () => techModal.classList.add("hidden"));
+  cancelTechModalBtn.addEventListener("click", () => techModal.classList.add("hidden"));
+
+  techForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const id = techIdInput.value;
+    const techData = {
+      name: techNameInput.value.trim(),
+      key: techKeyInput.value.trim().toLowerCase(),
+      category: techCategoryInput.value.trim() || "Geral",
+      order_index: parseInt(techOrderInput.value, 10) || 1,
+      is_featured: techFeaturedInput.checked,
+      updated_at: new Date().toISOString(),
+    };
+
+    if (id) {
+      const { error } = await supabase.from("tech_stack").update(techData).eq("id", id);
+      if (error) {
+        showToast(`Erro: ${error.message}`, true);
+      } else {
+        showToast("Tecnologia atualizada com sucesso!");
+        techModal.classList.add("hidden");
+        loadTechStack();
+      }
+    } else {
+      const { error } = await supabase.from("tech_stack").insert([techData]);
+      if (error) {
+        showToast(`Erro: ${error.message}`, true);
+      } else {
+        showToast("Tecnologia adicionada com sucesso!");
+        techModal.classList.add("hidden");
+        loadTechStack();
+      }
+    }
+  });
+
+  // ==========================================
+  // TAB 5: SOBRE MIM & HOBBIES LOGIC
+  // ==========================================
+  function renderHobbies() {
+    hobbiesContainer.innerHTML = currentHobbies.map((hobby, index) => `
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-neutral-100 dark:bg-zinc-800 text-[#1d1d1f] dark:text-white border border-neutral-200/80 dark:border-white/10">
+        ${hobby}
+        <button type="button" data-index="${index}" class="remove-hobby-btn text-[#86868b] hover:text-rose-500 font-bold">&times;</button>
+      </span>
+    `).join("");
+
+    document.querySelectorAll(".remove-hobby-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const idx = parseInt((e.currentTarget as HTMLElement).getAttribute("data-index") || "-1", 10);
+        if (idx >= 0) {
+          currentHobbies.splice(idx, 1);
+          renderHobbies();
+        }
+      });
+    });
+  }
+
+  function addHobby() {
+    const val = newHobbyInput.value.trim();
+    if (val && !currentHobbies.includes(val)) {
+      currentHobbies.push(val);
+      renderHobbies();
+      newHobbyInput.value = "";
+    }
+  }
+
+  addHobbyBtn.addEventListener("click", addHobby);
+  newHobbyInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addHobby();
+    }
+  });
+
+  // Editor vs Preview Tabs in About
+  aboutTabEditorBtn.addEventListener("click", () => {
+    aboutTabEditorBtn.className = "px-3.5 py-1 rounded-lg text-xs font-bold bg-white dark:bg-zinc-700 text-[#1d1d1f] dark:text-white shadow-xs cursor-pointer transition-all";
+    aboutTabPreviewBtn.className = "px-3.5 py-1 rounded-lg text-xs font-semibold text-[#86868b] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white cursor-pointer transition-all";
+    aboutEditorContainer.classList.remove("hidden");
+    aboutPreviewContainer.classList.add("hidden");
+  });
+
+  aboutTabPreviewBtn.addEventListener("click", async () => {
+    aboutTabPreviewBtn.className = "px-3.5 py-1 rounded-lg text-xs font-bold bg-white dark:bg-zinc-700 text-[#1d1d1f] dark:text-white shadow-xs cursor-pointer transition-all";
+    aboutTabEditorBtn.className = "px-3.5 py-1 rounded-lg text-xs font-semibold text-[#86868b] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white cursor-pointer transition-all";
+    aboutEditorContainer.classList.add("hidden");
+    aboutPreviewContainer.classList.remove("hidden");
+    aboutPreviewOutput.innerHTML = (await marked.parse(aboutContentInput.value || "*Nenhum conteúdo ainda...*")) as string;
+  });
+
+  // Toolbar in About
+  document.querySelectorAll(".about-tool-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cmd = btn.getAttribute("data-cmd");
+      const start = aboutContentInput.selectionStart;
+      const end = aboutContentInput.selectionEnd;
+      const text = aboutContentInput.value;
+      const selected = text.substring(start, end);
+
+      let insert = "";
+      switch (cmd) {
+        case "bold":
+          insert = `**${selected || "texto em negrito"}**`;
+          break;
+        case "italic":
+          insert = `*${selected || "texto em itálico"}*`;
+          break;
+        case "h2":
+          insert = `\n## ${selected || "Título H2"}\n`;
+          break;
+        case "h3":
+          insert = `\n### ${selected || "Título H3"}\n`;
+          break;
+        case "quote":
+          insert = `\n> ${selected || "Citação inspiradora"}\n`;
+          break;
+        case "image": {
+          const url = prompt("Cole a URL direta do GIF ou da Imagem (ex: Giphy, Tenor ou upload):");
+          if (!url || !url.trim()) return;
+          const caption = prompt("Legenda da imagem/GIF (opcional):") || "Demonstração";
+          insert = `\n![${caption}](${url.trim()})\n`;
+          break;
+        }
+        case "youtube": {
+          const input = prompt("Cole o link ou ID do vídeo do YouTube:");
+          if (!input || !input.trim()) return;
+          const videoId = extractYouTubeId(input);
+          if (!videoId) {
+            alert("Não foi possível identificar o ID do vídeo do YouTube.");
+            return;
+          }
+          insert = `\n<div class="video-responsive">\n  <iframe src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>\n</div>\n`;
+          break;
+        }
+      }
+
+      aboutContentInput.setRangeText(insert, start, end, "end");
+      aboutContentInput.focus();
+    });
+  });
+
+  function extractYouTubeId(url: string): string | null {
+    if (!url) return null;
+    url = url.trim();
+    if (/^[a-zA-Z0-9_-]{11}$/.test(url)) return url;
+    const matchWatch = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+    if (matchWatch) return matchWatch[1];
+    const matchShort = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+    if (matchShort) return matchShort[1];
+    const matchEmbed = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/);
+    if (matchEmbed) return matchEmbed[1];
+    const matchShorts = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/);
+    if (matchShorts) return matchShorts[1];
+    return null;
+  }
+
+  aboutForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const updates = {
+      about_title: aboutTitleInput.value.trim(),
+      about_description: aboutDescriptionInput.value.trim(),
+      headline: aboutHeadlineInput.value.trim(),
+      about_content: aboutContentInput.value,
+      hobbies: currentHobbies,
+      updated_at: new Date().toISOString(),
+    };
+
+    const { error } = await supabase.from("profile").upsert({ id: "main", ...updates });
+    if (error) {
+      showToast(`Erro ao salvar Sobre Mim: ${error.message}`, true);
+    } else {
+      showToast("Conteúdo da página Sobre Mim salvo com sucesso!");
+    }
   });
 
   initAuth();

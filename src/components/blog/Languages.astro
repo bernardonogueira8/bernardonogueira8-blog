@@ -2,22 +2,31 @@
 import { getAllLanguages } from "../../lib/posts";
 import Capsule from "../ui/Capsule.astro";
 
+interface Props {
+  variant?: "default" | "vertical" | "compact";
+  size?: "xs" | "md";
+  class?: string;
+}
+
 const languages = await getAllLanguages();
 
-const { variant = "default" } = Astro.props;
+const { variant = "default", size, class: className = "" } = Astro.props as Props;
+
+const capsuleSize = size ?? (variant === "compact" ? "xs" : "md");
 
 const baseClasses = "flex flex-wrap";
 
 const variantClasses = {
-    default: "gap-3 max-lg:gap-1",
-    vertical: "gap-6 flex-col"
+  default: "gap-3 max-lg:gap-1",
+  vertical: "gap-6 flex-col",
+  compact: "gap-2 max-sm:gap-1.5 items-center content-start",
 } as const;
 
-const classes = `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses] || variantClasses.default}`;
+const classes = `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses] || variantClasses.default} ${className}`.trim();
 ---
 
 <div class={classes}>
-    {languages.map((language) => (
-        <Capsule lang={language} linkEnabled={true} size="md" />
-    ))}
+  {languages.map((language) => (
+    <Capsule lang={language} linkEnabled={true} size={capsuleSize} />
+  ))}
 </div>

@@ -1,10 +1,10 @@
 # Portfólio Pessoal - Bernardo Nogueira
-![Demonstração do Portfólio](https://github.com/bernardonogueira8/bernardonogueira8.github.io/blob/main/public/Anima%C3%A7%C3%A3o.gif?raw=true)
+![Demonstração do Portfólio](https://github.com/bernardonogueira8/bernardonogueira8-blog/blob/main/public/Anima%C3%A7%C3%A3o.gif?raw=true)
 Este é o lugar onde eu, Bernardo Nogueira, centralizo meus projetos, artigos e minha jornada no mundo da tecnologia. Sou um Cientista de Dados com uma trajetória única, combinando a precisão da Análise e Desenvolvimento de Sistemas com a criatividade da Gastronomia e a solidez da Matemática.
 
 Aqui você vai encontrar um pouco de tudo que eu faço e estudo, desde dashboards e modelos de Machine Learning até tutoriais sobre programação e matemática.
 
-🚀 **Confira a versão ao vivo:** [bernardonogueira8.github.io](https://bernardonogueira8.github.io/)
+🚀 **Confira a versão ao vivo:** [bernardonogueira8.vercel.app](https://bernardonogueira8.vercel.app)
 
 ---
 ### ✨ Funcionalidades
@@ -36,12 +36,12 @@ Ficou curioso pra ver como o site funciona por dentro? É só seguir os passos a
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/bernardonogueira8/bernardonogueira8.github.io.git](https://github.com/bernardonogueira8/bernardonogueira8.github.io.git)
+    git clone [https://github.com/bernardonogueira8/bernardonogueira8-blog](https://github.com/bernardonogueira8/bernardonogueira8-blog)
     ```
 
 2.  **Navegue até a pasta do projeto:**
     ```bash
-    cd bernardonogueira8.github.io
+    cd bernardonogueira8-blog
     ```
 
 3.  **Instale as dependências:**
@@ -62,7 +62,7 @@ Pronto! Agora é só abrir `http://localhost:4321` no seu navegador para ver o s
 
 Adoraria me conectar com você! Me encontre nas redes abaixo:
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bernardo_Nogueira-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/SEU_USUARIO_AQUI/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bernardo_Nogueira-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/bernardonogueira8/)
 [![GitHub](https://img.shields.io/badge/GitHub-bernardonogueira8-181717?style=for-the-badge&logo=github)](https://github.com/bernardonogueira8)
 
 ---

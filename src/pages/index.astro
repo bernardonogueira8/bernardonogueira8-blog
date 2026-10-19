@@ -4,18 +4,23 @@ import Experience from "../components/portfolio/Experience.astro";
 import HeroIndex from "../components/portfolio/HeroIndex.astro";
 import Contact from "../components/portfolio/Contact.astro";
 import ListProjects from "../components/portfolio/ListProjects.astro";
-import { getCollection } from "astro:content";
+import { getProfile } from "../lib/profile";
 
-const [staticData] = await getCollection("staticData");
-const { pageTitle, pageDescription, OGImage } = staticData.data;
+const profile = await getProfile();
+const pageTitle = profile.page_title || "BernardoNogueira8";
+const pageDescription = profile.page_description || "Portfólio minimalista e moderno para destacar projetos em Data Science, Matemática e Tecnologia.";
+const ogImage = {
+  alt: profile.profile_alt || "Screenshot do portfólio de Bernardo Nogueira",
+  url: profile.portfolio_image || "/portfolio.png",
+};
 ---
 
 <Layout
   pageTitle={pageTitle}
   description={pageDescription}
-  ogimage={{ alt: OGImage.alt, url: OGImage.url }}
+  ogimage={ogImage}
 >
-  <HeroIndex />
+  <HeroIndex profile={profile} />
   <Experience />
   <ListProjects />
   <Contact />
