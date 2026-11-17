@@ -82,3 +82,19 @@ export interface TechStackItem {
   created_at?: string;
   updated_at?: string;
 }
+
+export type CertificateCategory = 'formacao' | 'evento' | 'curso';
+
+export interface CertificateItem {
+  id: string;
+  name: string;
+  event_date: string;
+  url: string;
+  certificate_type: string;
+  category: CertificateCategory;
+  institution?: string;
+  workload?: string;
+  order_index: number;
+  created_at?: string;
+  updated_at?: string;
+}

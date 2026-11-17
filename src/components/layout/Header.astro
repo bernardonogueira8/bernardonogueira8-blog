@@ -11,14 +11,14 @@ const [staticData] = await getCollection("staticData");
 const { github, githubIconName, linkedin, linkedinIconName } = staticData.data;
 
 const currentPath = Astro.url.pathname;
-const routes = ["/", "/portfolio", "/about-me"];
+const routes = ["/", "/portfolio", "/about-me", "/certificados"];
 
 // Check if the current route is in the list of routes
 const isActiveRoute = routes.includes(currentPath);
 
 const navItems = isActiveRoute
-  ? ["home", "experience", "projects", "about", "blog"]
-  : ["home", "blog", "about"]; // Change the items
+  ? ["home", "experience", "projects", "certificates", "about", "blog"]
+  : ["home", "blog", "certificates", "about"]; // Change the items
 ---
 
 <header
