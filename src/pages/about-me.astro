@@ -1,21 +1,811 @@
 ---
-import MarkdownAbout from "../layouts/MarkdownAbout.astro";
+import Layout from "../layouts/Layout.astro";
+import ThemeProfileImage from "../components/ui/ThemeProfileImage.astro";
 import { getProfile } from "../lib/profile";
+import { getExperiences } from "../lib/experiences";
+import { getTechStack } from "../lib/techStack";
 import { marked } from "marked";
 
 const profile = await getProfile();
-const contentHtml = marked.parse(profile.about_content || "");
+const experiences = await getExperiences();
+const techStack = await getTechStack(true);
 
-const frontmatter = {
-  title: profile.about_title || "Bernardo Nogueira | Data Science, Matemática e Gastronomia 🚀",
-  description: profile.about_description || "Minha jornada entre números, dados, sabores e tecnologia.",
-  image: {
-    url: profile.profile_image || "/profile.png",
-    alt: `Foto de ${profile.profile_name}`,
-  },
-};
+const profileName = profile.profile_name || "Bernardo Nogueira";
+const profileTitle = profile.profile_title || "Data Scientist";
+const headline = profile.headline || "Data Scientist & Math Teacher apaixonado por tecnologia, educação e ciência.";
+const pageTitle = profile.about_title || `${profileName} | Trajetória, Dados & Educação`;
+const pageDescription = profile.about_description || profile.bio_summary || "Trajetória profissional e acadêmica na intersecção entre Ciência de Dados, Educação Matemática e Gastronomia.";
+const profileImage = profile.profile_image || "/profile.png";
+
+const email = profile.email || "bernardonogueira8@hotmail.com";
+const githubUrl = profile.github_url || "https://github.com/bernardonogueira8";
+const linkedinUrl = profile.linkedin_url || "https://www.linkedin.com/in/bernardonogueira8";
+const instagramUrl = profile.instagram_url || "https://www.instagram.com/bernardo.nogueira8";
+
+// Biografia em Markdown
+const defaultBioMarkdown = `Em Branco alimente o banco`;
+
+const rawBio = (profile.about_content && profile.about_content.trim().length > 0)
+  ? profile.about_content
+  : defaultBioMarkdown;
+
+const bioHtml = await marked.parse(rawBio, {
+  gfm: true,
+  breaks: true,
+});
+
+const hobbies = (profile.hobbies && profile.hobbies.length > 0)
+  ? profile.hobbies
+  : ["Ciência de Dados", "Educação Matemática", "Gastronomia", "Boardgames", "Impressão 3D", "Mecatrônica"];
 ---
 
-<MarkdownAbout frontmatter={frontmatter}>
-  <div set:html={contentHtml} />
-</MarkdownAbout>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+
+<Layout
+  pageTitle={pageTitle}
+  description={pageDescription}
+  ogimage={{ url: profileImage, alt: `Perfil de ${profileName}` }}
+>
+  <div
+    id="aboutPageRoot"
+    data-profile-name={profileName}
+    class="diorama-about relative min-h-screen selection:bg-[#d6ad6e] selection:text-[#090807]"
+  >
+    <!-- Subtle Film Grain Overlay -->
+    <div class="diorama-grain pointer-events-none fixed inset-0 z-30 opacity-[0.035] dark:opacity-[0.055]" aria-hidden="true"></div>
+
+    <!-- ===================================================== -->
+    <!-- STAGE 3D CINEMATOGRÁFICO: O MONÓLITO GEODÉSICO DE DADOS -->
+    <!-- ===================================================== -->
+    <section
+      id="aboutStage"
+      class="relative w-full flex flex-col justify-between overflow-hidden border-b border-black/10 dark:border-white/10"
+      aria-label="Cena 3D Interativa — O Monólito Geodésico & Atractor de Dados"
+    >
+      <!-- Top Utility Bar: Identidade & Redes -->
+      <div class="relative z-10 pointer-events-none max-w-5xl w-full mx-auto px-6 sm:px-10 pt-4 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="size-1.5 rounded-full bg-[#d6ad6e] shadow-[0_0_10px_#d6ad6e]"></span>
+          <span class="font-mono text-[11px] tracking-[0.14em] text-zinc-600 dark:text-[#8f8577]">
+            {profileName} · Perfil & Trajetória
+          </span>
+        </div>
+
+        <div class="pointer-events-auto flex items-center gap-3">
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-mono text-[10px] tracking-[0.1em] px-2.5 py-1 border border-black/15 dark:border-white/15 text-zinc-800 dark:text-[#ece4d6] hover:border-[#d6ad6e] hover:text-[#d6ad6e] transition-colors cursor-pointer bg-white/40 dark:bg-black/30 backdrop-blur-md inline-flex items-center gap-1"
+            >
+              <span>GitHub</span>
+              <span class="text-xs">↗</span>
+            </a>
+          )}
+          {linkedinUrl && (
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-mono text-[10px] tracking-[0.1em] px-2.5 py-1 border border-black/15 dark:border-white/15 text-zinc-800 dark:text-[#ece4d6] hover:border-[#d6ad6e] hover:text-[#d6ad6e] transition-colors cursor-pointer bg-white/40 dark:bg-black/30 backdrop-blur-md inline-flex items-center gap-1"
+            >
+              <span>LinkedIn</span>
+              <span class="text-xs">↗</span>
+            </a>
+          )}
+          {email && (
+            <a
+              href={`mailto:${email}`}
+              class="font-mono text-[10px] tracking-[0.1em] px-2.5 py-1 border border-black/15 dark:border-white/15 text-zinc-800 dark:text-[#ece4d6] hover:border-[#d6ad6e] hover:text-[#d6ad6e] transition-colors cursor-pointer bg-white/40 dark:bg-black/30 backdrop-blur-md inline-flex items-center gap-1"
+            >
+              <span>Contato</span>
+              <span class="text-xs">✉</span>
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Hero Header Compacto -->
+      <div class="relative z-10 pointer-events-none max-w-5xl w-full mx-auto px-6 sm:px-10 pb-6 pt-2">
+        <div class="flex flex-col sm:flex-row items-center sm:items-end gap-5">
+          <!-- Moldura Minimalista de Retrato -->
+          <div class="pointer-events-auto relative size-24 sm:size-28 shrink-0 rounded-full p-[2px] bg-gradient-to-b from-[#d6ad6e]/40 to-black/10 dark:to-white/10 shadow-lg">
+            <div class="size-full rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-black/10 dark:border-white/15">
+              <ThemeProfileImage
+                lightImage={profile.profile_image_light || profileImage}
+                darkImage={profile.profile_image_dark || profileImage}
+                alt={`Foto de ${profileName}`}
+                class="size-full object-cover"
+                shape="rounded-full"
+              />
+            </div>
+          </div>
+
+          <!-- Tipografia & Identidade -->
+          <div class="text-center sm:text-left flex-1">
+            <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-zinc-900 dark:text-[#f3ede2]">
+              {profileName}
+            </h1>
+            <p id="aboutHeadlineDisplay" class="mt-1 font-sans text-sm sm:text-base text-zinc-600 dark:text-[#a89f91] max-w-xl font-normal leading-relaxed">
+              {headline}
+            </p>
+            <div class="mt-2.5 flex flex-wrap items-center justify-center sm:justify-start gap-2 text-[11px] font-mono text-zinc-500 dark:text-[#8f8577]">
+              <span>Salvador, BA</span>
+              <span class="text-zinc-400 dark:text-zinc-600">/</span>
+              <span>Ciência de Dados</span>
+              <span class="text-zinc-400 dark:text-zinc-600">/</span>
+              <span>Educação Matemática</span>
+              <span class="text-zinc-400 dark:text-zinc-600">/</span>
+              <span>Gastronomia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- CORPO PRINCIPAL COM CONTEÚDO EDITORIAL -->
+    <!-- ===================================================== -->
+    <main class="max-w-5xl mx-auto px-6 sm:px-10 py-12 space-y-16">
+      
+      <!-- MELHORIA 2: SNAPSHOT DE PILARES & MÉTRICAS PESSOAIS -->
+      <section aria-label="Pilares Fundamentais de Atuação" class="space-y-6">
+        <div class="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-3">
+          <h2 class="font-serif text-xl sm:text-2xl font-light text-zinc-900 dark:text-[#f3ede2]">
+            Pilares de Atuação
+          </h2>
+          <span class="font-mono text-[10px] tracking-wider text-zinc-500 dark:text-[#8f8577] uppercase">
+            Multidisciplinaridade
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Pilar 01: Dados & IA -->
+          <article class="p-6 rounded-xl border border-black/10 dark:border-white/10 bg-white/60 dark:bg-black/25 backdrop-blur-xs flex flex-col justify-between hover:border-[#d6ad6e]/40 transition-colors">
+            <div>
+              <span class="font-mono text-[11px] text-[#d6ad6e] font-medium tracking-widest block mb-2">
+                01 / DADOS & IA
+              </span>
+              <h3 class="font-serif text-lg font-normal text-zinc-900 dark:text-[#ece4d6] mb-2">
+                Ciência de Dados & Inteligência
+              </h3>
+              <p class="font-sans text-xs text-zinc-600 dark:text-[#9e9587] leading-relaxed">
+                Transformação de dados complexos em decisões assertivas. Modelagem preditiva, dashboards em Power BI e Tableau, e pipelines em Python e SQL para sistemas de saúde pública.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-black/5 dark:border-white/5 font-mono text-[10px] text-zinc-500 dark:text-[#7d7467]">
+              SESAB · FESFSUS · Machine Learning
+            </div>
+          </article>
+
+          <!-- Pilar 02: Matemática & Ensino -->
+          <article class="p-6 rounded-xl border border-black/10 dark:border-white/10 bg-white/60 dark:bg-black/25 backdrop-blur-xs flex flex-col justify-between hover:border-[#d6ad6e]/40 transition-colors">
+            <div>
+              <span class="font-mono text-[11px] text-[#d6ad6e] font-medium tracking-widest block mb-2">
+                02 / DOCÊNCIA & RIGOR
+              </span>
+              <h3 class="font-serif text-lg font-normal text-zinc-900 dark:text-[#ece4d6] mb-2">
+                Educação Matemática
+              </h3>
+              <p class="font-sans text-xs text-zinc-600 dark:text-[#9e9587] leading-relaxed">
+                O ensino como prática de emancipação e rigor lógico. Criação de metodologias ativas, desenvolvimento de materiais inovadores no IFBA (PIBID) e preparação para olimpíadas como a OLITEF.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-black/5 dark:border-white/5 font-mono text-[10px] text-zinc-500 dark:text-[#7d7467]">
+              IFBA · PIBID · Educação Financeira
+            </div>
+          </article>
+
+          <!-- Pilar 03: Gastronomia -->
+          <article class="p-6 rounded-xl border border-black/10 dark:border-white/10 bg-white/60 dark:bg-black/25 backdrop-blur-xs flex flex-col justify-between hover:border-[#d6ad6e]/40 transition-colors">
+            <div>
+              <span class="font-mono text-[11px] text-[#d6ad6e] font-medium tracking-widest block mb-2">
+                03 / MÉTODO & SENSIBILIDADE
+              </span>
+              <h3 class="font-serif text-lg font-normal text-zinc-900 dark:text-[#ece4d6] mb-2">
+                Gastronomia & Ciência dos Alimentos
+              </h3>
+              <p class="font-sans text-xs text-zinc-600 dark:text-[#9e9587] leading-relaxed">
+                A primeira graduação que forjou o respeito a processos, tempos e reações químicas. Onde o rigor métrico se une à sensibilidade e à criação de experiências humanas.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-black/5 dark:border-white/5 font-mono text-[10px] text-zinc-500 dark:text-[#7d7467]">
+              Processos · Química · Harmonia
+            </div>
+          </article>
+        </div>
+
+        <!-- Régua de Métricas Compactas -->
+        <div class="p-4 rounded-xl border border-black/10 dark:border-white/10 bg-white/40 dark:bg-black/20 flex flex-wrap items-center justify-around gap-4 text-center">
+          <div>
+            <div class="font-serif text-2xl font-light text-zinc-900 dark:text-[#ece4d6]">+5 Anos</div>
+            <div class="font-mono text-[10px] text-zinc-500 dark:text-[#8f8577] uppercase tracking-wider">Tecnologia & Dados</div>
+          </div>
+          <div class="hidden sm:block w-px h-8 bg-black/10 dark:bg-white/10"></div>
+          <div>
+            <div class="font-serif text-2xl font-light text-zinc-900 dark:text-[#ece4d6]">2 Pós-Graduações</div>
+            <div class="font-mono text-[10px] text-zinc-500 dark:text-[#8f8577] uppercase tracking-wider">Saúde & Matemática</div>
+          </div>
+          <div class="hidden sm:block w-px h-8 bg-black/10 dark:bg-white/10"></div>
+          <div>
+            <div class="font-serif text-2xl font-light text-zinc-900 dark:text-[#ece4d6]">IFBA & SESAB</div>
+            <div class="font-mono text-[10px] text-zinc-500 dark:text-[#8f8577] uppercase tracking-wider">Atuação Institucional</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO BIOGRAFIA NARRATIVA EDITORIAL -->
+      <section aria-label="Biografia e Trajetória Pessoal" class="space-y-6">
+        <div class="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-3">
+          <h2 class="font-serif text-xl sm:text-2xl font-light text-zinc-900 dark:text-[#f3ede2]">
+            Trajetória & Filosofia
+          </h2>
+          <span class="font-mono text-[10px] tracking-wider text-zinc-500 dark:text-[#8f8577] uppercase">
+            Biografia
+          </span>
+        </div>
+
+        <article class="editorial-prose font-sans text-sm sm:text-base text-zinc-700 dark:text-[#d2c9bd] leading-relaxed w-full">
+          <div id="aboutContentDisplay" class="w-full space-y-4" set:html={bioHtml} />
+        </article>
+      </section>
+
+      <!-- MELHORIA 3: LINHA DO TEMPO DE TRAJETÓRIA EDITORIAL -->
+      <section aria-label="Experiência Profissional e Acadêmica" class="space-y-6">
+        <div class="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-3">
+          <h2 class="font-serif text-xl sm:text-2xl font-light text-zinc-900 dark:text-[#f3ede2]">
+            Experiência & Trajetória
+          </h2>
+          <span class="font-mono text-[10px] tracking-wider text-zinc-500 dark:text-[#8f8577] uppercase">
+            {experiences.length} Marcos Registrados
+          </span>
+        </div>
+
+        <div class="relative pl-6 sm:pl-8 border-l border-black/15 dark:border-white/15 space-y-10">
+          {experiences.map((exp, index) => (
+            <article class="relative group">
+              <!-- Ponto na linha do tempo -->
+              <span class="absolute -left-[31px] sm:-left-[39px] top-1 size-3 rounded-full border-2 border-white dark:border-[#090807] bg-[#d6ad6e] ring-2 ring-[#d6ad6e]/20 group-hover:scale-125 transition-transform"></span>
+
+              <div class="flex flex-wrap items-baseline gap-2 mb-1">
+                <span class="font-mono text-[11px] text-[#8f8577] dark:text-[#9e9587]">
+                  {exp.period}
+                </span>
+                <span class="text-zinc-400 dark:text-zinc-600 text-xs">·</span>
+                <span class="font-mono text-xs text-[#d6ad6e] font-medium">
+                  {exp.company}
+                </span>
+              </div>
+
+              <h3 class="font-serif text-lg sm:text-xl font-normal text-zinc-900 dark:text-[#ece4d6]">
+                {exp.title}
+              </h3>
+
+              <p class="mt-1.5 font-sans text-xs sm:text-sm text-zinc-600 dark:text-[#9e9587] leading-relaxed w-full">
+                {exp.description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- SEÇÃO STACK TECNOLÓGICA & HOBBIES -->
+      <section aria-label="Competências Técnicas e Interesses" class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-black/10 dark:border-white/10">
+        <!-- Ferramentas & Tecnologias -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between pb-2">
+            <h3 class="font-serif text-lg font-light text-zinc-900 dark:text-[#f3ede2]">
+              Competências Técnicas
+            </h3>
+            <span class="font-mono text-[10px] text-zinc-500 dark:text-[#8f8577] uppercase">Ferramentas</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            {techStack.map((tool) => (
+              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md border border-black/10 dark:border-white/10 bg-white/40 dark:bg-black/30 text-zinc-700 dark:text-[#d2c9bd] hover:border-[#d6ad6e] transition-colors">
+                {tool.name}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Hobbies & Interesses -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between pb-2">
+            <h3 class="font-serif text-lg font-light text-zinc-900 dark:text-[#f3ede2]">
+              Interesses Pessoais
+            </h3>
+            <span class="font-mono text-[10px] text-zinc-500 dark:text-[#8f8577] uppercase">Hobbies</span>
+          </div>
+
+          <div id="aboutHobbiesContainer" class="flex flex-wrap gap-2">
+            {hobbies.map((hobby) => (
+              <span class="font-sans text-xs px-3 py-1 rounded-full border border-black/10 dark:border-white/10 bg-white/40 dark:bg-black/30 text-zinc-700 dark:text-[#d2c9bd]">
+                {hobby}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- RODAPÉ DE DIÁLOGO / CONTATO EDITORIAL -->
+      <section class="p-8 sm:p-10 rounded-2xl border border-black/10 dark:border-white/10 bg-gradient-to-br from-white/80 via-white/40 to-transparent dark:from-black/40 dark:via-black/20 dark:to-transparent flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-light text-zinc-900 dark:text-[#ece4d6]">
+            Vamos conversar?
+          </h2>
+          <p class="font-sans text-xs sm:text-sm text-zinc-600 dark:text-[#9e9587] mt-1 max-w-md">
+            Aberto para projetos analíticos, colaborações em educação e ciência de dados ou palestras.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href={`mailto:${email}`}
+            class="font-mono text-xs px-5 py-2.5 rounded-full border border-[#d6ad6e] bg-[#d6ad6e] text-[#090807] font-medium hover:bg-[#e2bb7e] transition-colors shadow-sm"
+          >
+            Fale Comigo ✉
+          </a>
+          <a
+            href="/certificados"
+            class="font-mono text-xs px-5 py-2.5 rounded-full border border-black/15 dark:border-white/15 text-zinc-800 dark:text-[#ece4d6] hover:border-[#d6ad6e] transition-colors"
+          >
+            Ver Certificados ↗
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</Layout>
+
+<!-- ===================================================== -->
+<!-- ESTILOS ESCOPADOS & TIPOGRAFIA EDITORIAL -->
+<!-- ===================================================== -->
+<style>
+  .diorama-about {
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Instrument Sans", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--sans);
+  }
+
+  .font-serif {
+    font-family: var(--serif);
+  }
+
+  .font-mono {
+    font-family: var(--mono);
+  }
+
+  .font-sans {
+    font-family: var(--sans);
+  }
+
+  .diorama-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Estilização da prosa Markdown */
+  .editorial-prose {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .editorial-prose :global(h1),
+  .editorial-prose :global(h2) {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    font-weight: 400;
+    margin-top: 2rem;
+    margin-bottom: 0.85rem;
+    color: #171717;
+  }
+  :global(.dark) .editorial-prose :global(h1),
+  :global(.dark) .editorial-prose :global(h2) {
+    color: #f3ede2;
+  }
+
+  .editorial-prose :global(h3) {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #d6ad6e;
+  }
+
+  .editorial-prose :global(h4),
+  .editorial-prose :global(h5),
+  .editorial-prose :global(h6) {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #171717;
+  }
+  :global(.dark) .editorial-prose :global(h4),
+  :global(.dark) .editorial-prose :global(h5),
+  :global(.dark) .editorial-prose :global(h6) {
+    color: #f3ede2;
+  }
+
+  .editorial-prose :global(p) {
+    margin-bottom: 1.25rem;
+    line-height: 1.85;
+    word-break: break-word;
+  }
+
+  .editorial-prose :global(strong) {
+    font-weight: 600;
+    color: #171717;
+  }
+  :global(.dark) .editorial-prose :global(strong) {
+    color: #f3ede2;
+  }
+
+  .editorial-prose :global(em) {
+    font-style: italic;
+  }
+
+  .editorial-prose :global(a) {
+    color: #d6ad6e;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+  .editorial-prose :global(a:hover) {
+    color: #b8860b;
+  }
+
+  .editorial-prose :global(blockquote) {
+    border-left: 2px solid #d6ad6e;
+    padding-left: 1.25rem;
+    font-style: italic;
+    font-family: var(--serif);
+    margin: 1.5rem 0;
+    color: #8f8577;
+  }
+
+  .editorial-prose :global(ul) {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .editorial-prose :global(ol) {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .editorial-prose :global(li) {
+    margin-bottom: 0.4rem;
+    line-height: 1.75;
+  }
+
+  .editorial-prose :global(hr) {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    margin: 2.25rem 0;
+  }
+  :global(.dark) .editorial-prose :global(hr) {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .editorial-prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  :global(.dark) .editorial-prose :global(img) {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .editorial-prose :global(pre) {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    margin: 1.25rem 0;
+  }
+  :global(.dark) .editorial-prose :global(pre) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .editorial-prose :global(code) {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.15rem 0.35rem;
+    border-radius: 0.25rem;
+  }
+  :global(.dark) .editorial-prose :global(code) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  @media print {
+    #aboutStage canvas {
+      display: none !important;
+    }
+  }
+</style>
+
+<!-- ===================================================== -->
+<!-- CLIENT SCRIPT: THREE.JS DIORAMA & SUPABASE LIVE SYNC -->
+<!-- ===================================================== -->
+<script>
+  import * as THREE from "https://esm.sh/three@0.170.0";
+  import { supabase } from "../lib/supabase";
+  import { marked } from "marked";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // ---------------------------------------------------
+    // 1. SINCRONIZAÇÃO DINÂMICA COM O SUPABASE (MELHORIA 4)
+    // ---------------------------------------------------
+    async function syncProfileData() {
+      try {
+        const { data, error } = await supabase
+          .from("profile")
+          .select("headline, about_content, hobbies")
+          .eq("id", "main")
+          .maybeSingle();
+
+        if (error || !data) return;
+
+        if (data.headline) {
+          const headlineEl = document.getElementById("aboutHeadlineDisplay");
+          if (headlineEl) headlineEl.textContent = data.headline;
+        }
+
+        if (data.about_content && data.about_content.trim().length > 0) {
+          const contentEl = document.getElementById("aboutContentDisplay");
+          if (contentEl) {
+            const parsed = await marked.parse(data.about_content, {
+              gfm: true,
+              breaks: true,
+            });
+            contentEl.innerHTML = typeof parsed === "string" ? parsed : await parsed;
+          }
+        }
+
+        if (data.hobbies && Array.isArray(data.hobbies) && data.hobbies.length > 0) {
+          const hobbiesEl = document.getElementById("aboutHobbiesContainer");
+          if (hobbiesEl) {
+            hobbiesEl.innerHTML = data.hobbies
+              .map(
+                (h: string) =>
+                  `<span class="font-sans text-xs px-3 py-1 rounded-full border border-black/10 dark:border-white/10 bg-white/40 dark:bg-black/30 text-zinc-700 dark:text-[#d2c9bd]">${h}</span>`
+              )
+              .join("");
+          }
+        }
+      } catch (e) {
+        console.warn("Sincronização em background finalizada com fallback ativo.");
+      }
+    }
+    syncProfileData();
+
+    // ---------------------------------------------------
+    // 2. DIORAMA 3D CINEMATOGRÁFICO COM THREE.JS
+    // ---------------------------------------------------
+    const canvas = document.getElementById("aboutCanvas") as HTMLCanvasElement | null;
+    const stage = document.getElementById("aboutStage");
+    if (!canvas || !stage) return;
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true,
+      powerPreference: "high-performance",
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+    camera.position.set(0, 0, 8.5);
+
+    // Grupo do Monólito Geodésico
+    const monolithGroup = new THREE.Group();
+    // Posicionamento elegante à direita para balancear com o texto de perfil
+    monolithGroup.position.set(2.4, 0.15, 0);
+    scene.add(monolithGroup);
+
+    // 1. Icosaedro Geodésico Exterior (Wireframe Dourado)
+    const outerGeo = new THREE.IcosahedronGeometry(2.1, 1);
+    const outerMat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color("#d6ad6e"),
+      wireframe: true,
+      transparent: true,
+      opacity: 0.65,
+      roughness: 0.35,
+      metalness: 0.85,
+    });
+    const outerMesh = new THREE.Mesh(outerGeo, outerMat);
+    monolithGroup.add(outerMesh);
+
+    // 2. Núcleo Sólido Facetado (Poliedro com reflexo metálico)
+    const innerGeo = new THREE.DodecahedronGeometry(1.22, 0);
+    const innerMat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color("#1f1c19"),
+      roughness: 0.22,
+      metalness: 0.9,
+      flatShading: true,
+    });
+    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+    monolithGroup.add(innerMesh);
+
+    // 3. Anéis Giroscópicos Concêntricos (Euler Gyroscope)
+    const ringMat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color("#d6ad6e"),
+      roughness: 0.3,
+      metalness: 0.85,
+    });
+    const ring1 = new THREE.Mesh(new THREE.TorusGeometry(2.7, 0.016, 16, 120), ringMat);
+    ring1.rotation.x = Math.PI / 3.8;
+    ring1.rotation.y = Math.PI / 6;
+    monolithGroup.add(ring1);
+
+    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.0, 0.014, 16, 120), ringMat);
+    ring2.rotation.x = -Math.PI / 4.2;
+    ring2.rotation.z = Math.PI / 5;
+    monolithGroup.add(ring2);
+
+    // 4. Nuvem Estatística de Dados (Pontos Orbitais)
+    const pointsCount = 450;
+    const posArr = new Float32Array(pointsCount * 3);
+    for (let i = 0; i < pointsCount; i++) {
+      const u = Math.random();
+      const v = Math.random();
+      const theta = u * 2.0 * Math.PI;
+      const phi = Math.acos(2.0 * v - 1.0);
+      const r = 2.4 + Math.random() * 1.8;
+      posArr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      posArr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      posArr[i * 3 + 2] = r * Math.cos(phi);
+    }
+    const pointsGeo = new THREE.BufferGeometry();
+    pointsGeo.setAttribute("position", new THREE.BufferAttribute(posArr, 3));
+    const pointsMat = new THREE.PointsMaterial({
+      size: 0.026,
+      color: new THREE.Color("#d6ad6e"),
+      transparent: true,
+      opacity: 0.45,
+    });
+    const pointsMesh = new THREE.Points(pointsGeo, pointsMat);
+    monolithGroup.add(pointsMesh);
+
+    // 5. Iluminação de Estúdio & Lanterna Interativa (Dioramas Style)
+    const ambientLight = new THREE.AmbientLight("#ffffff", 0.55);
+    scene.add(ambientLight);
+
+    // Lanterna pontual que segue suavemente o cursor
+    const lanternLight = new THREE.PointLight("#ffdfa0", 10.0, 16, 1.4);
+    lanternLight.position.set(2.4, 1.2, 3.2);
+    scene.add(lanternLight);
+
+    const rimLight = new THREE.DirectionalLight("#7c9cb8", 2.2);
+    rimLight.position.set(-4, -3, -2);
+    scene.add(rimLight);
+
+    const topLight = new THREE.DirectionalLight("#ffd9a0", 1.8);
+    topLight.position.set(1, 5, 3);
+    scene.add(topLight);
+
+    function syncThemeColors() {
+      const isDark = document.documentElement.classList.contains("dark");
+      ambientLight.intensity = isDark ? 0.45 : 1.15;
+      lanternLight.intensity = isDark ? 10.5 : 7.0;
+      innerMat.color.set(isDark ? "#1f1c19" : "#c49346");
+    }
+    syncThemeColors();
+
+    const themeObserver = new MutationObserver(() => syncThemeColors());
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    // Responsividade do Canvas & Layout
+    function resize() {
+      const w = stage.clientWidth;
+      const h = stage.clientHeight;
+      if (w === 0 || h === 0) return;
+
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+
+      // Em telas menores, centraliza o monólito suavemente com escala menor
+      if (w < 768) {
+        monolithGroup.position.set(0, 0.4, -0.8);
+        monolithGroup.scale.setScalar(0.72);
+      } else {
+        monolithGroup.position.set(2.4, 0.1, 0);
+        monolithGroup.scale.setScalar(0.95);
+      }
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    // Interatividade com Mouse & Touch
+    const pointer = {
+      x: 0.2,
+      y: 0.1,
+      sx: 0.2,
+      sy: 0.1,
+      down: false,
+      dragX: 0.25,
+      dragY: 0.45,
+    };
+
+    stage.addEventListener("pointermove", (e: PointerEvent) => {
+      const rect = stage.getBoundingClientRect();
+      const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      if (pointer.down) {
+        pointer.dragY += (nx - pointer.x) * 1.8;
+        pointer.dragX -= (ny - pointer.y) * 1.8;
+      }
+      pointer.x = nx;
+      pointer.y = ny;
+    });
+
+    stage.addEventListener("pointerdown", () => {
+      pointer.down = true;
+    });
+
+    window.addEventListener("pointerup", () => {
+      pointer.down = false;
+    });
+
+    // Loop de Animação com inércia física
+    let lastTime = performance.now();
+    function animate(now: number) {
+      requestAnimationFrame(animate);
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+      const t = now * 0.001;
+
+      const damp = 1 - Math.exp(-6 * dt);
+      pointer.sx += (pointer.x - pointer.sx) * damp;
+      pointer.sy += (pointer.y - pointer.sy) * damp;
+
+      // Lanterna acompanha o cursor com profundidade
+      lanternLight.position.x = monolithGroup.position.x + pointer.sx * 2.8;
+      lanternLight.position.y = pointer.sy * 2.0 + 0.3;
+      lanternLight.position.z = 3.2;
+
+      // Rotações harmônicas e inércia do arraste
+      const scrollY = window.scrollY * 0.0008;
+      monolithGroup.rotation.y = t * 0.14 + pointer.dragY + pointer.sx * 0.3 + scrollY;
+      monolithGroup.rotation.x = pointer.dragX - pointer.sy * 0.2 + Math.sin(t * 0.5) * 0.06;
+
+      // Movimentos independentes dos anéis e partículas
+      ring1.rotation.z = t * 0.22;
+      ring2.rotation.y = -t * 0.18;
+      pointsMesh.rotation.y = t * 0.04;
+
+      // Pulsação sutil na escala
+      const pulse = 1 + Math.sin(t * 1.4) * 0.015;
+      innerMesh.scale.setScalar(pulse);
+
+      renderer.render(scene, camera);
+    }
+    requestAnimationFrame(animate);
+  });
+</script>
